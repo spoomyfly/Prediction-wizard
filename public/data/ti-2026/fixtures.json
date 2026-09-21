@@ -1,0 +1,56 @@
+[
+  {
+    "id": "ti-r1-0",
+    "matchday": 1,
+    "homeTeamId": "ti-team-spirit",
+    "awayTeamId": "ti-azure-ray"
+  },
+  {
+    "id": "ti-r1-1",
+    "matchday": 1,
+    "homeTeamId": "ti-team-falcons",
+    "awayTeamId": "ti-nigma-galaxy"
+  },
+  {
+    "id": "ti-r1-2",
+    "matchday": 1,
+    "homeTeamId": "ti-gaimin-gladiators",
+    "awayTeamId": "ti-9pandas"
+  },
+  {
+    "id": "ti-r1-3",
+    "matchday": 1,
+    "homeTeamId": "ti-xtreme-gaming",
+    "awayTeamId": "ti-talon-esports"
+  },
+  {
+    "id": "ti-r1-4",
+    "matchday": 1,
+    "homeTeamId": "ti-tundra-esports",
+    "awayTeamId": "ti-beastcoast"
+  },
+  {
+    "id": "ti-r1-5",
+    "matchday": 1,
+    "homeTeamId": "ti-betboom-team",
+    "awayTeamId": "ti-heroic"
+  },
+  {
+    "id": "ti-r1-6",
+    "matchday": 1,
+    "homeTeamId": "ti-team-liquid",
+    "awayTeamId": "ti-og"
+  },
+  {
+    "id": "ti-r1-7",
+    "matchday": 1,
+    "homeTeamId": "ti-psg-lgd",
+    "awayTeamId": "ti-aurora-gaming"
+  },
+  {
+    "id": "ti-r1-8",
+    "matchday": 1,
+    "homeTeamId": "ti-shopify-rebellion",
+    "awayTeamId": "ti-wildcard-gaming"
+  }
+]

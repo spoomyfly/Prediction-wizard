@@ -1,0 +1,223 @@
+{
+  "asOf": "2026-09-21",
+  "source": "placeholder",
+  "note": "Illustrative ratings, not a live ClubElo/Odds API feed — see docs/strength-params.md.",
+  "teams": [
+    {
+      "id": "ucl-real-madrid",
+      "elo": 2080,
+      "attack": 1.4433333333333334,
+      "defense": 0.6200000000000001
+    },
+    {
+      "id": "ucl-manchester-city",
+      "elo": 2065,
+      "attack": 1.4258333333333333,
+      "defense": 0.635
+    },
+    {
+      "id": "ucl-bayern-munich",
+      "elo": 2040,
+      "attack": 1.3966666666666665,
+      "defense": 0.66
+    },
+    {
+      "id": "ucl-paris-saint-germain",
+      "elo": 2020,
+      "attack": 1.3733333333333333,
+      "defense": 0.6799999999999999
+    },
+    {
+      "id": "ucl-liverpool",
+      "elo": 2010,
+      "attack": 1.3616666666666668,
+      "defense": 0.69
+    },
+    {
+      "id": "ucl-inter",
+      "elo": 1970,
+      "attack": 1.315,
+      "defense": 0.73
+    },
+    {
+      "id": "ucl-barcelona",
+      "elo": 1985,
+      "attack": 1.3325,
+      "defense": 0.7150000000000001
+    },
+    {
+      "id": "ucl-bayer-leverkusen",
+      "elo": 1930,
+      "attack": 1.2683333333333333,
+      "defense": 0.77
+    },
+    {
+      "id": "ucl-atletico-madrid",
+      "elo": 1940,
+      "attack": 1.28,
+      "defense": 0.76
+    },
+    {
+      "id": "ucl-atalanta",
+      "elo": 1890,
+      "attack": 1.2216666666666667,
+      "defense": 0.81
+    },
+    {
+      "id": "ucl-juventus",
+      "elo": 1900,
+      "attack": 1.2333333333333334,
+      "defense": 0.8
+    },
+    {
+      "id": "ucl-borussia-dortmund",
+      "elo": 1895,
+      "attack": 1.2275,
+      "defense": 0.8049999999999999
+    },
+    {
+      "id": "ucl-benfica",
+      "elo": 1850,
+      "attack": 1.175,
+      "defense": 0.85
+    },
+    {
+      "id": "ucl-arsenal",
+      "elo": 1975,
+      "attack": 1.3208333333333333,
+      "defense": 0.7250000000000001
+    },
+    {
+      "id": "ucl-club-brugge",
+      "elo": 1780,
+      "attack": 1.0933333333333333,
+      "defense": 0.92
+    },
+    {
+      "id": "ucl-shakhtar-donetsk",
+      "elo": 1770,
+      "attack": 1.0816666666666666,
+      "defense": 0.93
+    },
+    {
+      "id": "ucl-milan",
+      "elo": 1885,
+      "attack": 1.2158333333333333,
+      "defense": 0.815
+    },
+    {
+      "id": "ucl-feyenoord",
+      "elo": 1810,
+      "attack": 1.1283333333333334,
+      "defense": 0.89
+    },
+    {
+      "id": "ucl-sporting-cp",
+      "elo": 1860,
+      "attack": 1.1866666666666665,
+      "defense": 0.84
+    },
+    {
+      "id": "ucl-psv-eindhoven",
+      "elo": 1820,
+      "attack": 1.14,
+      "defense": 0.88
+    },
+    {
+      "id": "ucl-celtic",
+      "elo": 1740,
+      "attack": 1.0466666666666666,
+      "defense": 0.96
+    },
+    {
+      "id": "ucl-rb-leipzig",
+      "elo": 1875,
+      "attack": 1.2041666666666666,
+      "defense": 0.825
+    },
+    {
+      "id": "ucl-young-boys",
+      "elo": 1690,
+      "attack": 0.9883333333333333,
+      "defense": 1.01
+    },
+    {
+      "id": "ucl-stuttgart",
+      "elo": 1820,
+      "attack": 1.14,
+      "defense": 0.88
+    },
+    {
+      "id": "ucl-sparta-prague",
+      "elo": 1710,
+      "attack": 1.0116666666666667,
+      "defense": 0.99
+    },
+    {
+      "id": "ucl-salzburg",
+      "elo": 1790,
+      "attack": 1.105,
+      "defense": 0.91
+    },
+    {
+      "id": "ucl-dinamo-zagreb",
+      "elo": 1720,
+      "attack": 1.0233333333333334,
+      "defense": 0.98
+    },
+    {
+      "id": "ucl-monaco",
+      "elo": 1830,
+      "attack": 1.1516666666666666,
+      "defense": 0.87
+    },
+    {
+      "id": "ucl-aston-villa",
+      "elo": 1850,
+      "attack": 1.175,
+      "defense": 0.85
+    },
+    {
+      "id": "ucl-bologna",
+      "elo": 1750,
+      "attack": 1.0583333333333333,
+      "defense": 0.95
+    },
+    {
+      "id": "ucl-girona",
+      "elo": 1770,
+      "attack": 1.0816666666666666,
+      "defense": 0.93
+    },
+    {
+      "id": "ucl-slovan-bratislava",
+      "elo": 1650,
+      "attack": 0.9416666666666667,
+      "defense": 1.05
+    },
+    {
+      "id": "ucl-brest",
+      "elo": 1740,
+      "attack": 1.0466666666666666,
+      "defense": 0.96
+    },
+    {
+      "id": "ucl-sturm-graz",
+      "elo": 1660,
+      "attack": 0.9533333333333334,
+      "defense": 1.04
+    },
+    {
+      "id": "ucl-lille",
+      "elo": 1790,
+      "attack": 1.105,
+      "defense": 0.91
+    },
+    {
+      "id": "ucl-red-star-belgrade",
+      "elo": 1700,
+      "attack": 1,
+      "defense": 1
+    }
+  ]
+}

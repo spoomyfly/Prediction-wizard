@@ -1,0 +1,254 @@
+[
+  {
+    "id": "ucl-real-madrid",
+    "name": "Real Madrid",
+    "country": "ESP",
+    "clubCoefficient": 20.8,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-manchester-city",
+    "name": "Manchester City",
+    "country": "ENG",
+    "clubCoefficient": 20.7,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-bayern-munich",
+    "name": "Bayern Munich",
+    "country": "GER",
+    "clubCoefficient": 20.4,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-paris-saint-germain",
+    "name": "Paris Saint-Germain",
+    "country": "FRA",
+    "clubCoefficient": 20.2,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-liverpool",
+    "name": "Liverpool",
+    "country": "ENG",
+    "clubCoefficient": 20.1,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-inter",
+    "name": "Inter",
+    "country": "ITA",
+    "clubCoefficient": 19.7,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-barcelona",
+    "name": "Barcelona",
+    "country": "ESP",
+    "clubCoefficient": 19.9,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-bayer-leverkusen",
+    "name": "Bayer Leverkusen",
+    "country": "GER",
+    "clubCoefficient": 19.3,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-atletico-madrid",
+    "name": "Atletico Madrid",
+    "country": "ESP",
+    "clubCoefficient": 19.4,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-atalanta",
+    "name": "Atalanta",
+    "country": "ITA",
+    "clubCoefficient": 18.9,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-juventus",
+    "name": "Juventus",
+    "country": "ITA",
+    "clubCoefficient": 19,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-borussia-dortmund",
+    "name": "Borussia Dortmund",
+    "country": "GER",
+    "clubCoefficient": 19,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-benfica",
+    "name": "Benfica",
+    "country": "POR",
+    "clubCoefficient": 18.5,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "ucl-arsenal",
+    "name": "Arsenal",
+    "country": "ENG",
+    "clubCoefficient": 19.8,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-club-brugge",
+    "name": "Club Brugge",
+    "country": "BEL",
+    "clubCoefficient": 17.8,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-shakhtar-donetsk",
+    "name": "Shakhtar Donetsk",
+    "country": "UKR",
+    "clubCoefficient": 17.7,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "ucl-milan",
+    "name": "Milan",
+    "country": "ITA",
+    "clubCoefficient": 18.9,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "ucl-feyenoord",
+    "name": "Feyenoord",
+    "country": "NED",
+    "clubCoefficient": 18.1,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-sporting-cp",
+    "name": "Sporting CP",
+    "country": "POR",
+    "clubCoefficient": 18.6,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-psv-eindhoven",
+    "name": "PSV Eindhoven",
+    "country": "NED",
+    "clubCoefficient": 18.2,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-celtic",
+    "name": "Celtic",
+    "country": "SCO",
+    "clubCoefficient": 17.4,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "ucl-rb-leipzig",
+    "name": "RB Leipzig",
+    "country": "GER",
+    "clubCoefficient": 18.8,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-young-boys",
+    "name": "Young Boys",
+    "country": "SUI",
+    "clubCoefficient": 16.9,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-stuttgart",
+    "name": "Stuttgart",
+    "country": "GER",
+    "clubCoefficient": 18.2,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-sparta-prague",
+    "name": "Sparta Prague",
+    "country": "CZE",
+    "clubCoefficient": 17.1,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-salzburg",
+    "name": "Salzburg",
+    "country": "AUT",
+    "clubCoefficient": 17.9,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-dinamo-zagreb",
+    "name": "Dinamo Zagreb",
+    "country": "CRO",
+    "clubCoefficient": 17.2,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-monaco",
+    "name": "Monaco",
+    "country": "FRA",
+    "clubCoefficient": 18.3,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-aston-villa",
+    "name": "Aston Villa",
+    "country": "ENG",
+    "clubCoefficient": 18.5,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-bologna",
+    "name": "Bologna",
+    "country": "ITA",
+    "clubCoefficient": 17.5,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-girona",
+    "name": "Girona",
+    "country": "ESP",
+    "clubCoefficient": 17.7,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-slovan-bratislava",
+    "name": "Slovan Bratislava",
+    "country": "SVK",
+    "clubCoefficient": 16.5,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-brest",
+    "name": "Brest",
+    "country": "FRA",
+    "clubCoefficient": 17.4,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-sturm-graz",
+    "name": "Sturm Graz",
+    "country": "AUT",
+    "clubCoefficient": 16.6,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "ucl-lille",
+    "name": "Lille",
+    "country": "FRA",
+    "clubCoefficient": 17.9,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "ucl-red-star-belgrade",
+    "name": "Red Star Belgrade",
+    "country": "SRB",
+    "clubCoefficient": 17,
+    "disciplinaryPoints": 1
+  }
+]

@@ -1,0 +1,254 @@
+[
+  {
+    "id": "uel-manchester-united",
+    "name": "Manchester United",
+    "country": "ENG",
+    "clubCoefficient": 18.8,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-tottenham-hotspur",
+    "name": "Tottenham Hotspur",
+    "country": "ENG",
+    "clubCoefficient": 18.6,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-roma",
+    "name": "Roma",
+    "country": "ITA",
+    "clubCoefficient": 18.3,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-lazio",
+    "name": "Lazio",
+    "country": "ITA",
+    "clubCoefficient": 18.1,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-ajax",
+    "name": "Ajax",
+    "country": "NED",
+    "clubCoefficient": 17.9,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-real-sociedad",
+    "name": "Real Sociedad",
+    "country": "ESP",
+    "clubCoefficient": 17.8,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-real-betis",
+    "name": "Real Betis",
+    "country": "ESP",
+    "clubCoefficient": 17.6,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-porto",
+    "name": "Porto",
+    "country": "POR",
+    "clubCoefficient": 18.2,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-fenerbahce",
+    "name": "Fenerbahce",
+    "country": "TUR",
+    "clubCoefficient": 17.9,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-galatasaray",
+    "name": "Galatasaray",
+    "country": "TUR",
+    "clubCoefficient": 18,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-besiktas",
+    "name": "Besiktas",
+    "country": "TUR",
+    "clubCoefficient": 17.2,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-rangers",
+    "name": "Rangers",
+    "country": "SCO",
+    "clubCoefficient": 17.1,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-olympiacos",
+    "name": "Olympiacos",
+    "country": "GRE",
+    "clubCoefficient": 17.4,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-paok",
+    "name": "PAOK",
+    "country": "GRE",
+    "clubCoefficient": 17,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-ferencvaros",
+    "name": "Ferencvaros",
+    "country": "HUN",
+    "clubCoefficient": 16.5,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-malmo",
+    "name": "Malmo",
+    "country": "SWE",
+    "clubCoefficient": 16.1,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-union-saint-gilloise",
+    "name": "Union Saint-Gilloise",
+    "country": "BEL",
+    "clubCoefficient": 17.2,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-anderlecht",
+    "name": "Anderlecht",
+    "country": "BEL",
+    "clubCoefficient": 16.9,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-nice",
+    "name": "Nice",
+    "country": "FRA",
+    "clubCoefficient": 17.5,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-lyon",
+    "name": "Lyon",
+    "country": "FRA",
+    "clubCoefficient": 17.8,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-viktoria-plzen",
+    "name": "Viktoria Plzen",
+    "country": "CZE",
+    "clubCoefficient": 16.7,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-slavia-prague",
+    "name": "Slavia Prague",
+    "country": "CZE",
+    "clubCoefficient": 17.3,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-fcsb",
+    "name": "FCSB",
+    "country": "ROU",
+    "clubCoefficient": 16.4,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-qarabag",
+    "name": "Qarabag",
+    "country": "AZE",
+    "clubCoefficient": 16.6,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-maccabi-tel-aviv",
+    "name": "Maccabi Tel Aviv",
+    "country": "ISR",
+    "clubCoefficient": 16.5,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-hoffenheim",
+    "name": "Hoffenheim",
+    "country": "GER",
+    "clubCoefficient": 17.4,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-braga",
+    "name": "Braga",
+    "country": "POR",
+    "clubCoefficient": 17.5,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-vitoria-guimaraes",
+    "name": "Vitoria Guimaraes",
+    "country": "POR",
+    "clubCoefficient": 16.9,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-twente",
+    "name": "Twente",
+    "country": "NED",
+    "clubCoefficient": 17,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-az-alkmaar",
+    "name": "AZ Alkmaar",
+    "country": "NED",
+    "clubCoefficient": 17.2,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-elfsborg",
+    "name": "Elfsborg",
+    "country": "SWE",
+    "clubCoefficient": 15.8,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-midtjylland",
+    "name": "Midtjylland",
+    "country": "DEN",
+    "clubCoefficient": 17,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uel-bodo-glimt",
+    "name": "Bodo/Glimt",
+    "country": "NOR",
+    "clubCoefficient": 17.1,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uel-heidenheim",
+    "name": "Heidenheim",
+    "country": "GER",
+    "clubCoefficient": 16.5,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uel-rigas-fs",
+    "name": "Rigas FS",
+    "country": "LAT",
+    "clubCoefficient": 15,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uel-cercle-brugge",
+    "name": "Cercle Brugge",
+    "country": "BEL",
+    "clubCoefficient": 16.2,
+    "disciplinaryPoints": 2
+  }
+]

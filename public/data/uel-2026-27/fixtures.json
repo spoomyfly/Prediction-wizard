@@ -1,0 +1,866 @@
+[
+  {
+    "id": "uel-0",
+    "matchday": 1,
+    "homeTeamId": "uel-manchester-united",
+    "awayTeamId": "uel-cercle-brugge"
+  },
+  {
+    "id": "uel-1",
+    "matchday": 1,
+    "homeTeamId": "uel-rigas-fs",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-2",
+    "matchday": 1,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-heidenheim"
+  },
+  {
+    "id": "uel-3",
+    "matchday": 1,
+    "homeTeamId": "uel-bodo-glimt",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-4",
+    "matchday": 1,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-midtjylland"
+  },
+  {
+    "id": "uel-5",
+    "matchday": 1,
+    "homeTeamId": "uel-elfsborg",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-6",
+    "matchday": 1,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-7",
+    "matchday": 1,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-8",
+    "matchday": 1,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-9",
+    "matchday": 1,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-10",
+    "matchday": 1,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-11",
+    "matchday": 1,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-12",
+    "matchday": 1,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-13",
+    "matchday": 1,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-14",
+    "matchday": 1,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-15",
+    "matchday": 1,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-16",
+    "matchday": 1,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-17",
+    "matchday": 1,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-18",
+    "matchday": 2,
+    "homeTeamId": "uel-rigas-fs",
+    "awayTeamId": "uel-manchester-united"
+  },
+  {
+    "id": "uel-19",
+    "matchday": 2,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-heidenheim"
+  },
+  {
+    "id": "uel-20",
+    "matchday": 2,
+    "homeTeamId": "uel-bodo-glimt",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-21",
+    "matchday": 2,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-midtjylland"
+  },
+  {
+    "id": "uel-22",
+    "matchday": 2,
+    "homeTeamId": "uel-elfsborg",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-23",
+    "matchday": 2,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-24",
+    "matchday": 2,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-25",
+    "matchday": 2,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-26",
+    "matchday": 2,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-27",
+    "matchday": 2,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-28",
+    "matchday": 2,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-29",
+    "matchday": 2,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-30",
+    "matchday": 2,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-31",
+    "matchday": 2,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-32",
+    "matchday": 2,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-33",
+    "matchday": 2,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-34",
+    "matchday": 2,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-35",
+    "matchday": 2,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-36",
+    "matchday": 3,
+    "homeTeamId": "uel-manchester-united",
+    "awayTeamId": "uel-heidenheim"
+  },
+  {
+    "id": "uel-37",
+    "matchday": 3,
+    "homeTeamId": "uel-bodo-glimt",
+    "awayTeamId": "uel-rigas-fs"
+  },
+  {
+    "id": "uel-38",
+    "matchday": 3,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-midtjylland"
+  },
+  {
+    "id": "uel-39",
+    "matchday": 3,
+    "homeTeamId": "uel-elfsborg",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-40",
+    "matchday": 3,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-41",
+    "matchday": 3,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-42",
+    "matchday": 3,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-43",
+    "matchday": 3,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-44",
+    "matchday": 3,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-45",
+    "matchday": 3,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-46",
+    "matchday": 3,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-47",
+    "matchday": 3,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-48",
+    "matchday": 3,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-49",
+    "matchday": 3,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-50",
+    "matchday": 3,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-51",
+    "matchday": 3,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-52",
+    "matchday": 3,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-53",
+    "matchday": 3,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-54",
+    "matchday": 4,
+    "homeTeamId": "uel-bodo-glimt",
+    "awayTeamId": "uel-manchester-united"
+  },
+  {
+    "id": "uel-55",
+    "matchday": 4,
+    "homeTeamId": "uel-heidenheim",
+    "awayTeamId": "uel-midtjylland"
+  },
+  {
+    "id": "uel-56",
+    "matchday": 4,
+    "homeTeamId": "uel-elfsborg",
+    "awayTeamId": "uel-rigas-fs"
+  },
+  {
+    "id": "uel-57",
+    "matchday": 4,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-58",
+    "matchday": 4,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-59",
+    "matchday": 4,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-60",
+    "matchday": 4,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-61",
+    "matchday": 4,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-62",
+    "matchday": 4,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-63",
+    "matchday": 4,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-64",
+    "matchday": 4,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-65",
+    "matchday": 4,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-66",
+    "matchday": 4,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-67",
+    "matchday": 4,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-68",
+    "matchday": 4,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-69",
+    "matchday": 4,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-70",
+    "matchday": 4,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-71",
+    "matchday": 4,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-72",
+    "matchday": 5,
+    "homeTeamId": "uel-manchester-united",
+    "awayTeamId": "uel-midtjylland"
+  },
+  {
+    "id": "uel-73",
+    "matchday": 5,
+    "homeTeamId": "uel-elfsborg",
+    "awayTeamId": "uel-bodo-glimt"
+  },
+  {
+    "id": "uel-74",
+    "matchday": 5,
+    "homeTeamId": "uel-heidenheim",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-75",
+    "matchday": 5,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-rigas-fs"
+  },
+  {
+    "id": "uel-76",
+    "matchday": 5,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-77",
+    "matchday": 5,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-78",
+    "matchday": 5,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-79",
+    "matchday": 5,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-80",
+    "matchday": 5,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-81",
+    "matchday": 5,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-82",
+    "matchday": 5,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-83",
+    "matchday": 5,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-84",
+    "matchday": 5,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-85",
+    "matchday": 5,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-86",
+    "matchday": 5,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-87",
+    "matchday": 5,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-88",
+    "matchday": 5,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-89",
+    "matchday": 5,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-90",
+    "matchday": 6,
+    "homeTeamId": "uel-elfsborg",
+    "awayTeamId": "uel-manchester-united"
+  },
+  {
+    "id": "uel-91",
+    "matchday": 6,
+    "homeTeamId": "uel-midtjylland",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-92",
+    "matchday": 6,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-bodo-glimt"
+  },
+  {
+    "id": "uel-93",
+    "matchday": 6,
+    "homeTeamId": "uel-heidenheim",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-94",
+    "matchday": 6,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-rigas-fs"
+  },
+  {
+    "id": "uel-95",
+    "matchday": 6,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-96",
+    "matchday": 6,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-97",
+    "matchday": 6,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-98",
+    "matchday": 6,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-99",
+    "matchday": 6,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-100",
+    "matchday": 6,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-101",
+    "matchday": 6,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-102",
+    "matchday": 6,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-103",
+    "matchday": 6,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-104",
+    "matchday": 6,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-105",
+    "matchday": 6,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-106",
+    "matchday": 6,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-107",
+    "matchday": 6,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-108",
+    "matchday": 7,
+    "homeTeamId": "uel-manchester-united",
+    "awayTeamId": "uel-az-alkmaar"
+  },
+  {
+    "id": "uel-109",
+    "matchday": 7,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-elfsborg"
+  },
+  {
+    "id": "uel-110",
+    "matchday": 7,
+    "homeTeamId": "uel-midtjylland",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-111",
+    "matchday": 7,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-bodo-glimt"
+  },
+  {
+    "id": "uel-112",
+    "matchday": 7,
+    "homeTeamId": "uel-heidenheim",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-113",
+    "matchday": 7,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-rigas-fs"
+  },
+  {
+    "id": "uel-114",
+    "matchday": 7,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-115",
+    "matchday": 7,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-116",
+    "matchday": 7,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-117",
+    "matchday": 7,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-118",
+    "matchday": 7,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-119",
+    "matchday": 7,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-120",
+    "matchday": 7,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-121",
+    "matchday": 7,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-122",
+    "matchday": 7,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-123",
+    "matchday": 7,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-124",
+    "matchday": 7,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-125",
+    "matchday": 7,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-rangers"
+  },
+  {
+    "id": "uel-126",
+    "matchday": 8,
+    "homeTeamId": "uel-twente",
+    "awayTeamId": "uel-manchester-united"
+  },
+  {
+    "id": "uel-127",
+    "matchday": 8,
+    "homeTeamId": "uel-az-alkmaar",
+    "awayTeamId": "uel-vitoria-guimaraes"
+  },
+  {
+    "id": "uel-128",
+    "matchday": 8,
+    "homeTeamId": "uel-braga",
+    "awayTeamId": "uel-elfsborg"
+  },
+  {
+    "id": "uel-129",
+    "matchday": 8,
+    "homeTeamId": "uel-midtjylland",
+    "awayTeamId": "uel-hoffenheim"
+  },
+  {
+    "id": "uel-130",
+    "matchday": 8,
+    "homeTeamId": "uel-maccabi-tel-aviv",
+    "awayTeamId": "uel-bodo-glimt"
+  },
+  {
+    "id": "uel-131",
+    "matchday": 8,
+    "homeTeamId": "uel-heidenheim",
+    "awayTeamId": "uel-qarabag"
+  },
+  {
+    "id": "uel-132",
+    "matchday": 8,
+    "homeTeamId": "uel-fcsb",
+    "awayTeamId": "uel-rigas-fs"
+  },
+  {
+    "id": "uel-133",
+    "matchday": 8,
+    "homeTeamId": "uel-cercle-brugge",
+    "awayTeamId": "uel-slavia-prague"
+  },
+  {
+    "id": "uel-134",
+    "matchday": 8,
+    "homeTeamId": "uel-viktoria-plzen",
+    "awayTeamId": "uel-tottenham-hotspur"
+  },
+  {
+    "id": "uel-135",
+    "matchday": 8,
+    "homeTeamId": "uel-roma",
+    "awayTeamId": "uel-lyon"
+  },
+  {
+    "id": "uel-136",
+    "matchday": 8,
+    "homeTeamId": "uel-nice",
+    "awayTeamId": "uel-lazio"
+  },
+  {
+    "id": "uel-137",
+    "matchday": 8,
+    "homeTeamId": "uel-ajax",
+    "awayTeamId": "uel-anderlecht"
+  },
+  {
+    "id": "uel-138",
+    "matchday": 8,
+    "homeTeamId": "uel-union-saint-gilloise",
+    "awayTeamId": "uel-real-sociedad"
+  },
+  {
+    "id": "uel-139",
+    "matchday": 8,
+    "homeTeamId": "uel-real-betis",
+    "awayTeamId": "uel-malmo"
+  },
+  {
+    "id": "uel-140",
+    "matchday": 8,
+    "homeTeamId": "uel-ferencvaros",
+    "awayTeamId": "uel-porto"
+  },
+  {
+    "id": "uel-141",
+    "matchday": 8,
+    "homeTeamId": "uel-fenerbahce",
+    "awayTeamId": "uel-paok"
+  },
+  {
+    "id": "uel-142",
+    "matchday": 8,
+    "homeTeamId": "uel-olympiacos",
+    "awayTeamId": "uel-galatasaray"
+  },
+  {
+    "id": "uel-143",
+    "matchday": 8,
+    "homeTeamId": "uel-besiktas",
+    "awayTeamId": "uel-rangers"
+  }
+]

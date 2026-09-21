@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ti-team-spirit",
+    "name": "Team Spirit",
+    "country": "RUS"
+  },
+  {
+    "id": "ti-team-falcons",
+    "name": "Team Falcons",
+    "country": "KSA"
+  },
+  {
+    "id": "ti-gaimin-gladiators",
+    "name": "Gaimin Gladiators",
+    "country": "GBR"
+  },
+  {
+    "id": "ti-xtreme-gaming",
+    "name": "Xtreme Gaming",
+    "country": "CHN"
+  },
+  {
+    "id": "ti-tundra-esports",
+    "name": "Tundra Esports",
+    "country": "GBR"
+  },
+  {
+    "id": "ti-betboom-team",
+    "name": "BetBoom Team",
+    "country": "RUS"
+  },
+  {
+    "id": "ti-team-liquid",
+    "name": "Team Liquid",
+    "country": "NED"
+  },
+  {
+    "id": "ti-psg-lgd",
+    "name": "PSG.LGD",
+    "country": "CHN"
+  },
+  {
+    "id": "ti-shopify-rebellion",
+    "name": "Shopify Rebellion",
+    "country": "USA"
+  },
+  {
+    "id": "ti-azure-ray",
+    "name": "Azure Ray",
+    "country": "CHN"
+  },
+  {
+    "id": "ti-nigma-galaxy",
+    "name": "Nigma Galaxy",
+    "country": "UAE"
+  },
+  {
+    "id": "ti-9pandas",
+    "name": "9Pandas",
+    "country": "EUR"
+  },
+  {
+    "id": "ti-talon-esports",
+    "name": "Talon Esports",
+    "country": "THA"
+  },
+  {
+    "id": "ti-beastcoast",
+    "name": "Beastcoast",
+    "country": "PER"
+  },
+  {
+    "id": "ti-heroic",
+    "name": "HEROIC",
+    "country": "EUR"
+  },
+  {
+    "id": "ti-og",
+    "name": "OG",
+    "country": "EUR"
+  },
+  {
+    "id": "ti-aurora-gaming",
+    "name": "Aurora Gaming",
+    "country": "EEU"
+  },
+  {
+    "id": "ti-wildcard-gaming",
+    "name": "Wildcard Gaming",
+    "country": "SEA"
+  }
+]

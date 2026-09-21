@@ -1,0 +1,650 @@
+[
+  {
+    "id": "uecl-0",
+    "matchday": 1,
+    "homeTeamId": "uecl-chelsea",
+    "awayTeamId": "uecl-aek-larnaca"
+  },
+  {
+    "id": "uecl-1",
+    "matchday": 1,
+    "homeTeamId": "uecl-panathinaikos",
+    "awayTeamId": "uecl-fiorentina"
+  },
+  {
+    "id": "uecl-2",
+    "matchday": 1,
+    "homeTeamId": "uecl-real-sociedad-b",
+    "awayTeamId": "uecl-aris-limassol"
+  },
+  {
+    "id": "uecl-3",
+    "matchday": 1,
+    "homeTeamId": "uecl-lech-poznan",
+    "awayTeamId": "uecl-rapid-vienna"
+  },
+  {
+    "id": "uecl-4",
+    "matchday": 1,
+    "homeTeamId": "uecl-legia-warsaw",
+    "awayTeamId": "uecl-vitesse"
+  },
+  {
+    "id": "uecl-5",
+    "matchday": 1,
+    "homeTeamId": "uecl-zilina",
+    "awayTeamId": "uecl-jagiellonia"
+  },
+  {
+    "id": "uecl-6",
+    "matchday": 1,
+    "homeTeamId": "uecl-apoel",
+    "awayTeamId": "uecl-ruzomberok"
+  },
+  {
+    "id": "uecl-7",
+    "matchday": 1,
+    "homeTeamId": "uecl-jablonec",
+    "awayTeamId": "uecl-molde"
+  },
+  {
+    "id": "uecl-8",
+    "matchday": 1,
+    "homeTeamId": "uecl-vikingur-reykjavik",
+    "awayTeamId": "uecl-silkeborg"
+  },
+  {
+    "id": "uecl-9",
+    "matchday": 1,
+    "homeTeamId": "uecl-hacken",
+    "awayTeamId": "uecl-djurgardens"
+  },
+  {
+    "id": "uecl-10",
+    "matchday": 1,
+    "homeTeamId": "uecl-cukaricki",
+    "awayTeamId": "uecl-heerenveen"
+  },
+  {
+    "id": "uecl-11",
+    "matchday": 1,
+    "homeTeamId": "uecl-utrecht",
+    "awayTeamId": "uecl-pafos"
+  },
+  {
+    "id": "uecl-12",
+    "matchday": 1,
+    "homeTeamId": "uecl-zrinjski-mostar",
+    "awayTeamId": "uecl-gent"
+  },
+  {
+    "id": "uecl-13",
+    "matchday": 1,
+    "homeTeamId": "uecl-santa-clara",
+    "awayTeamId": "uecl-lugano"
+  },
+  {
+    "id": "uecl-14",
+    "matchday": 1,
+    "homeTeamId": "uecl-astana",
+    "awayTeamId": "uecl-omonia"
+  },
+  {
+    "id": "uecl-15",
+    "matchday": 1,
+    "homeTeamId": "uecl-backa-topola",
+    "awayTeamId": "uecl-the-new-saints"
+  },
+  {
+    "id": "uecl-16",
+    "matchday": 1,
+    "homeTeamId": "uecl-shamrock-rovers",
+    "awayTeamId": "uecl-petrocub"
+  },
+  {
+    "id": "uecl-17",
+    "matchday": 1,
+    "homeTeamId": "uecl-noah",
+    "awayTeamId": "uecl-larne"
+  },
+  {
+    "id": "uecl-18",
+    "matchday": 2,
+    "homeTeamId": "uecl-panathinaikos",
+    "awayTeamId": "uecl-chelsea"
+  },
+  {
+    "id": "uecl-19",
+    "matchday": 2,
+    "homeTeamId": "uecl-aek-larnaca",
+    "awayTeamId": "uecl-aris-limassol"
+  },
+  {
+    "id": "uecl-20",
+    "matchday": 2,
+    "homeTeamId": "uecl-lech-poznan",
+    "awayTeamId": "uecl-fiorentina"
+  },
+  {
+    "id": "uecl-21",
+    "matchday": 2,
+    "homeTeamId": "uecl-real-sociedad-b",
+    "awayTeamId": "uecl-vitesse"
+  },
+  {
+    "id": "uecl-22",
+    "matchday": 2,
+    "homeTeamId": "uecl-zilina",
+    "awayTeamId": "uecl-rapid-vienna"
+  },
+  {
+    "id": "uecl-23",
+    "matchday": 2,
+    "homeTeamId": "uecl-legia-warsaw",
+    "awayTeamId": "uecl-ruzomberok"
+  },
+  {
+    "id": "uecl-24",
+    "matchday": 2,
+    "homeTeamId": "uecl-jablonec",
+    "awayTeamId": "uecl-jagiellonia"
+  },
+  {
+    "id": "uecl-25",
+    "matchday": 2,
+    "homeTeamId": "uecl-apoel",
+    "awayTeamId": "uecl-silkeborg"
+  },
+  {
+    "id": "uecl-26",
+    "matchday": 2,
+    "homeTeamId": "uecl-hacken",
+    "awayTeamId": "uecl-molde"
+  },
+  {
+    "id": "uecl-27",
+    "matchday": 2,
+    "homeTeamId": "uecl-vikingur-reykjavik",
+    "awayTeamId": "uecl-heerenveen"
+  },
+  {
+    "id": "uecl-28",
+    "matchday": 2,
+    "homeTeamId": "uecl-utrecht",
+    "awayTeamId": "uecl-djurgardens"
+  },
+  {
+    "id": "uecl-29",
+    "matchday": 2,
+    "homeTeamId": "uecl-cukaricki",
+    "awayTeamId": "uecl-gent"
+  },
+  {
+    "id": "uecl-30",
+    "matchday": 2,
+    "homeTeamId": "uecl-santa-clara",
+    "awayTeamId": "uecl-pafos"
+  },
+  {
+    "id": "uecl-31",
+    "matchday": 2,
+    "homeTeamId": "uecl-zrinjski-mostar",
+    "awayTeamId": "uecl-omonia"
+  },
+  {
+    "id": "uecl-32",
+    "matchday": 2,
+    "homeTeamId": "uecl-backa-topola",
+    "awayTeamId": "uecl-lugano"
+  },
+  {
+    "id": "uecl-33",
+    "matchday": 2,
+    "homeTeamId": "uecl-astana",
+    "awayTeamId": "uecl-petrocub"
+  },
+  {
+    "id": "uecl-34",
+    "matchday": 2,
+    "homeTeamId": "uecl-noah",
+    "awayTeamId": "uecl-the-new-saints"
+  },
+  {
+    "id": "uecl-35",
+    "matchday": 2,
+    "homeTeamId": "uecl-shamrock-rovers",
+    "awayTeamId": "uecl-larne"
+  },
+  {
+    "id": "uecl-36",
+    "matchday": 3,
+    "homeTeamId": "uecl-chelsea",
+    "awayTeamId": "uecl-aris-limassol"
+  },
+  {
+    "id": "uecl-37",
+    "matchday": 3,
+    "homeTeamId": "uecl-lech-poznan",
+    "awayTeamId": "uecl-panathinaikos"
+  },
+  {
+    "id": "uecl-38",
+    "matchday": 3,
+    "homeTeamId": "uecl-aek-larnaca",
+    "awayTeamId": "uecl-vitesse"
+  },
+  {
+    "id": "uecl-39",
+    "matchday": 3,
+    "homeTeamId": "uecl-zilina",
+    "awayTeamId": "uecl-fiorentina"
+  },
+  {
+    "id": "uecl-40",
+    "matchday": 3,
+    "homeTeamId": "uecl-real-sociedad-b",
+    "awayTeamId": "uecl-ruzomberok"
+  },
+  {
+    "id": "uecl-41",
+    "matchday": 3,
+    "homeTeamId": "uecl-jablonec",
+    "awayTeamId": "uecl-rapid-vienna"
+  },
+  {
+    "id": "uecl-42",
+    "matchday": 3,
+    "homeTeamId": "uecl-legia-warsaw",
+    "awayTeamId": "uecl-silkeborg"
+  },
+  {
+    "id": "uecl-43",
+    "matchday": 3,
+    "homeTeamId": "uecl-hacken",
+    "awayTeamId": "uecl-jagiellonia"
+  },
+  {
+    "id": "uecl-44",
+    "matchday": 3,
+    "homeTeamId": "uecl-apoel",
+    "awayTeamId": "uecl-heerenveen"
+  },
+  {
+    "id": "uecl-45",
+    "matchday": 3,
+    "homeTeamId": "uecl-utrecht",
+    "awayTeamId": "uecl-molde"
+  },
+  {
+    "id": "uecl-46",
+    "matchday": 3,
+    "homeTeamId": "uecl-vikingur-reykjavik",
+    "awayTeamId": "uecl-gent"
+  },
+  {
+    "id": "uecl-47",
+    "matchday": 3,
+    "homeTeamId": "uecl-santa-clara",
+    "awayTeamId": "uecl-djurgardens"
+  },
+  {
+    "id": "uecl-48",
+    "matchday": 3,
+    "homeTeamId": "uecl-cukaricki",
+    "awayTeamId": "uecl-omonia"
+  },
+  {
+    "id": "uecl-49",
+    "matchday": 3,
+    "homeTeamId": "uecl-backa-topola",
+    "awayTeamId": "uecl-pafos"
+  },
+  {
+    "id": "uecl-50",
+    "matchday": 3,
+    "homeTeamId": "uecl-zrinjski-mostar",
+    "awayTeamId": "uecl-petrocub"
+  },
+  {
+    "id": "uecl-51",
+    "matchday": 3,
+    "homeTeamId": "uecl-noah",
+    "awayTeamId": "uecl-lugano"
+  },
+  {
+    "id": "uecl-52",
+    "matchday": 3,
+    "homeTeamId": "uecl-astana",
+    "awayTeamId": "uecl-larne"
+  },
+  {
+    "id": "uecl-53",
+    "matchday": 3,
+    "homeTeamId": "uecl-shamrock-rovers",
+    "awayTeamId": "uecl-the-new-saints"
+  },
+  {
+    "id": "uecl-54",
+    "matchday": 4,
+    "homeTeamId": "uecl-lech-poznan",
+    "awayTeamId": "uecl-chelsea"
+  },
+  {
+    "id": "uecl-55",
+    "matchday": 4,
+    "homeTeamId": "uecl-aris-limassol",
+    "awayTeamId": "uecl-vitesse"
+  },
+  {
+    "id": "uecl-56",
+    "matchday": 4,
+    "homeTeamId": "uecl-zilina",
+    "awayTeamId": "uecl-panathinaikos"
+  },
+  {
+    "id": "uecl-57",
+    "matchday": 4,
+    "homeTeamId": "uecl-aek-larnaca",
+    "awayTeamId": "uecl-ruzomberok"
+  },
+  {
+    "id": "uecl-58",
+    "matchday": 4,
+    "homeTeamId": "uecl-jablonec",
+    "awayTeamId": "uecl-fiorentina"
+  },
+  {
+    "id": "uecl-59",
+    "matchday": 4,
+    "homeTeamId": "uecl-real-sociedad-b",
+    "awayTeamId": "uecl-silkeborg"
+  },
+  {
+    "id": "uecl-60",
+    "matchday": 4,
+    "homeTeamId": "uecl-hacken",
+    "awayTeamId": "uecl-rapid-vienna"
+  },
+  {
+    "id": "uecl-61",
+    "matchday": 4,
+    "homeTeamId": "uecl-legia-warsaw",
+    "awayTeamId": "uecl-heerenveen"
+  },
+  {
+    "id": "uecl-62",
+    "matchday": 4,
+    "homeTeamId": "uecl-utrecht",
+    "awayTeamId": "uecl-jagiellonia"
+  },
+  {
+    "id": "uecl-63",
+    "matchday": 4,
+    "homeTeamId": "uecl-apoel",
+    "awayTeamId": "uecl-gent"
+  },
+  {
+    "id": "uecl-64",
+    "matchday": 4,
+    "homeTeamId": "uecl-santa-clara",
+    "awayTeamId": "uecl-molde"
+  },
+  {
+    "id": "uecl-65",
+    "matchday": 4,
+    "homeTeamId": "uecl-vikingur-reykjavik",
+    "awayTeamId": "uecl-omonia"
+  },
+  {
+    "id": "uecl-66",
+    "matchday": 4,
+    "homeTeamId": "uecl-backa-topola",
+    "awayTeamId": "uecl-djurgardens"
+  },
+  {
+    "id": "uecl-67",
+    "matchday": 4,
+    "homeTeamId": "uecl-cukaricki",
+    "awayTeamId": "uecl-petrocub"
+  },
+  {
+    "id": "uecl-68",
+    "matchday": 4,
+    "homeTeamId": "uecl-noah",
+    "awayTeamId": "uecl-pafos"
+  },
+  {
+    "id": "uecl-69",
+    "matchday": 4,
+    "homeTeamId": "uecl-zrinjski-mostar",
+    "awayTeamId": "uecl-larne"
+  },
+  {
+    "id": "uecl-70",
+    "matchday": 4,
+    "homeTeamId": "uecl-shamrock-rovers",
+    "awayTeamId": "uecl-lugano"
+  },
+  {
+    "id": "uecl-71",
+    "matchday": 4,
+    "homeTeamId": "uecl-astana",
+    "awayTeamId": "uecl-the-new-saints"
+  },
+  {
+    "id": "uecl-72",
+    "matchday": 5,
+    "homeTeamId": "uecl-chelsea",
+    "awayTeamId": "uecl-vitesse"
+  },
+  {
+    "id": "uecl-73",
+    "matchday": 5,
+    "homeTeamId": "uecl-zilina",
+    "awayTeamId": "uecl-lech-poznan"
+  },
+  {
+    "id": "uecl-74",
+    "matchday": 5,
+    "homeTeamId": "uecl-aris-limassol",
+    "awayTeamId": "uecl-ruzomberok"
+  },
+  {
+    "id": "uecl-75",
+    "matchday": 5,
+    "homeTeamId": "uecl-jablonec",
+    "awayTeamId": "uecl-panathinaikos"
+  },
+  {
+    "id": "uecl-76",
+    "matchday": 5,
+    "homeTeamId": "uecl-aek-larnaca",
+    "awayTeamId": "uecl-silkeborg"
+  },
+  {
+    "id": "uecl-77",
+    "matchday": 5,
+    "homeTeamId": "uecl-hacken",
+    "awayTeamId": "uecl-fiorentina"
+  },
+  {
+    "id": "uecl-78",
+    "matchday": 5,
+    "homeTeamId": "uecl-real-sociedad-b",
+    "awayTeamId": "uecl-heerenveen"
+  },
+  {
+    "id": "uecl-79",
+    "matchday": 5,
+    "homeTeamId": "uecl-utrecht",
+    "awayTeamId": "uecl-rapid-vienna"
+  },
+  {
+    "id": "uecl-80",
+    "matchday": 5,
+    "homeTeamId": "uecl-legia-warsaw",
+    "awayTeamId": "uecl-gent"
+  },
+  {
+    "id": "uecl-81",
+    "matchday": 5,
+    "homeTeamId": "uecl-santa-clara",
+    "awayTeamId": "uecl-jagiellonia"
+  },
+  {
+    "id": "uecl-82",
+    "matchday": 5,
+    "homeTeamId": "uecl-apoel",
+    "awayTeamId": "uecl-omonia"
+  },
+  {
+    "id": "uecl-83",
+    "matchday": 5,
+    "homeTeamId": "uecl-backa-topola",
+    "awayTeamId": "uecl-molde"
+  },
+  {
+    "id": "uecl-84",
+    "matchday": 5,
+    "homeTeamId": "uecl-vikingur-reykjavik",
+    "awayTeamId": "uecl-petrocub"
+  },
+  {
+    "id": "uecl-85",
+    "matchday": 5,
+    "homeTeamId": "uecl-noah",
+    "awayTeamId": "uecl-djurgardens"
+  },
+  {
+    "id": "uecl-86",
+    "matchday": 5,
+    "homeTeamId": "uecl-cukaricki",
+    "awayTeamId": "uecl-larne"
+  },
+  {
+    "id": "uecl-87",
+    "matchday": 5,
+    "homeTeamId": "uecl-shamrock-rovers",
+    "awayTeamId": "uecl-pafos"
+  },
+  {
+    "id": "uecl-88",
+    "matchday": 5,
+    "homeTeamId": "uecl-zrinjski-mostar",
+    "awayTeamId": "uecl-the-new-saints"
+  },
+  {
+    "id": "uecl-89",
+    "matchday": 5,
+    "homeTeamId": "uecl-astana",
+    "awayTeamId": "uecl-lugano"
+  },
+  {
+    "id": "uecl-90",
+    "matchday": 6,
+    "homeTeamId": "uecl-zilina",
+    "awayTeamId": "uecl-chelsea"
+  },
+  {
+    "id": "uecl-91",
+    "matchday": 6,
+    "homeTeamId": "uecl-vitesse",
+    "awayTeamId": "uecl-ruzomberok"
+  },
+  {
+    "id": "uecl-92",
+    "matchday": 6,
+    "homeTeamId": "uecl-jablonec",
+    "awayTeamId": "uecl-lech-poznan"
+  },
+  {
+    "id": "uecl-93",
+    "matchday": 6,
+    "homeTeamId": "uecl-aris-limassol",
+    "awayTeamId": "uecl-silkeborg"
+  },
+  {
+    "id": "uecl-94",
+    "matchday": 6,
+    "homeTeamId": "uecl-hacken",
+    "awayTeamId": "uecl-panathinaikos"
+  },
+  {
+    "id": "uecl-95",
+    "matchday": 6,
+    "homeTeamId": "uecl-aek-larnaca",
+    "awayTeamId": "uecl-heerenveen"
+  },
+  {
+    "id": "uecl-96",
+    "matchday": 6,
+    "homeTeamId": "uecl-utrecht",
+    "awayTeamId": "uecl-fiorentina"
+  },
+  {
+    "id": "uecl-97",
+    "matchday": 6,
+    "homeTeamId": "uecl-real-sociedad-b",
+    "awayTeamId": "uecl-gent"
+  },
+  {
+    "id": "uecl-98",
+    "matchday": 6,
+    "homeTeamId": "uecl-santa-clara",
+    "awayTeamId": "uecl-rapid-vienna"
+  },
+  {
+    "id": "uecl-99",
+    "matchday": 6,
+    "homeTeamId": "uecl-legia-warsaw",
+    "awayTeamId": "uecl-omonia"
+  },
+  {
+    "id": "uecl-100",
+    "matchday": 6,
+    "homeTeamId": "uecl-backa-topola",
+    "awayTeamId": "uecl-jagiellonia"
+  },
+  {
+    "id": "uecl-101",
+    "matchday": 6,
+    "homeTeamId": "uecl-apoel",
+    "awayTeamId": "uecl-petrocub"
+  },
+  {
+    "id": "uecl-102",
+    "matchday": 6,
+    "homeTeamId": "uecl-noah",
+    "awayTeamId": "uecl-molde"
+  },
+  {
+    "id": "uecl-103",
+    "matchday": 6,
+    "homeTeamId": "uecl-vikingur-reykjavik",
+    "awayTeamId": "uecl-larne"
+  },
+  {
+    "id": "uecl-104",
+    "matchday": 6,
+    "homeTeamId": "uecl-shamrock-rovers",
+    "awayTeamId": "uecl-djurgardens"
+  },
+  {
+    "id": "uecl-105",
+    "matchday": 6,
+    "homeTeamId": "uecl-cukaricki",
+    "awayTeamId": "uecl-the-new-saints"
+  },
+  {
+    "id": "uecl-106",
+    "matchday": 6,
+    "homeTeamId": "uecl-astana",
+    "awayTeamId": "uecl-pafos"
+  },
+  {
+    "id": "uecl-107",
+    "matchday": 6,
+    "homeTeamId": "uecl-zrinjski-mostar",
+    "awayTeamId": "uecl-lugano"
+  }
+]

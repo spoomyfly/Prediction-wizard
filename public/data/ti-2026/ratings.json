@@ -1,0 +1,79 @@
+{
+  "asOf": "2026-09-21",
+  "source": "placeholder",
+  "note": "Illustrative Elo ratings, not a live OpenDota/STRATZ feed — see docs/strength-params.md.",
+  "teams": [
+    {
+      "id": "ti-team-spirit",
+      "elo": 1950
+    },
+    {
+      "id": "ti-team-falcons",
+      "elo": 1930
+    },
+    {
+      "id": "ti-gaimin-gladiators",
+      "elo": 1870
+    },
+    {
+      "id": "ti-xtreme-gaming",
+      "elo": 1900
+    },
+    {
+      "id": "ti-tundra-esports",
+      "elo": 1880
+    },
+    {
+      "id": "ti-betboom-team",
+      "elo": 1830
+    },
+    {
+      "id": "ti-team-liquid",
+      "elo": 1840
+    },
+    {
+      "id": "ti-psg-lgd",
+      "elo": 1860
+    },
+    {
+      "id": "ti-shopify-rebellion",
+      "elo": 1780
+    },
+    {
+      "id": "ti-azure-ray",
+      "elo": 1770
+    },
+    {
+      "id": "ti-nigma-galaxy",
+      "elo": 1760
+    },
+    {
+      "id": "ti-9pandas",
+      "elo": 1720
+    },
+    {
+      "id": "ti-talon-esports",
+      "elo": 1700
+    },
+    {
+      "id": "ti-beastcoast",
+      "elo": 1710
+    },
+    {
+      "id": "ti-heroic",
+      "elo": 1690
+    },
+    {
+      "id": "ti-og",
+      "elo": 1750
+    },
+    {
+      "id": "ti-aurora-gaming",
+      "elo": 1800
+    },
+    {
+      "id": "ti-wildcard-gaming",
+      "elo": 1650
+    }
+  ]
+}

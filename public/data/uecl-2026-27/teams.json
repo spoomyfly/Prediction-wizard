@@ -1,0 +1,254 @@
+[
+  {
+    "id": "uecl-chelsea",
+    "name": "Chelsea",
+    "country": "ENG",
+    "clubCoefficient": 18.3,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-fiorentina",
+    "name": "Fiorentina",
+    "country": "ITA",
+    "clubCoefficient": 17.7,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-real-sociedad-b",
+    "name": "Real Sociedad B",
+    "country": "ESP",
+    "clubCoefficient": 15.6,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-rapid-vienna",
+    "name": "Rapid Vienna",
+    "country": "AUT",
+    "clubCoefficient": 16.8,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-legia-warsaw",
+    "name": "Legia Warsaw",
+    "country": "POL",
+    "clubCoefficient": 16.4,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-jagiellonia",
+    "name": "Jagiellonia",
+    "country": "POL",
+    "clubCoefficient": 15.9,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-apoel",
+    "name": "APOEL",
+    "country": "CYP",
+    "clubCoefficient": 15.6,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-molde",
+    "name": "Molde",
+    "country": "NOR",
+    "clubCoefficient": 16.5,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-vikingur-reykjavik",
+    "name": "Vikingur Reykjavik",
+    "country": "ISL",
+    "clubCoefficient": 14.8,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-djurgardens",
+    "name": "Djurgardens",
+    "country": "SWE",
+    "clubCoefficient": 16,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-cukaricki",
+    "name": "Cukaricki",
+    "country": "SRB",
+    "clubCoefficient": 15.2,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-pafos",
+    "name": "Pafos",
+    "country": "CYP",
+    "clubCoefficient": 15.4,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uecl-zrinjski-mostar",
+    "name": "Zrinjski Mostar",
+    "country": "BIH",
+    "clubCoefficient": 15,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-lugano",
+    "name": "Lugano",
+    "country": "SUI",
+    "clubCoefficient": 15.7,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uecl-astana",
+    "name": "Astana",
+    "country": "KAZ",
+    "clubCoefficient": 15.2,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-the-new-saints",
+    "name": "The New Saints",
+    "country": "WAL",
+    "clubCoefficient": 13.8,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-shamrock-rovers",
+    "name": "Shamrock Rovers",
+    "country": "IRL",
+    "clubCoefficient": 15,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-larne",
+    "name": "Larne",
+    "country": "NIR",
+    "clubCoefficient": 14.2,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uecl-noah",
+    "name": "Noah",
+    "country": "ARM",
+    "clubCoefficient": 14.7,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-petrocub",
+    "name": "Petrocub",
+    "country": "MDA",
+    "clubCoefficient": 14.4,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-backa-topola",
+    "name": "Backa Topola",
+    "country": "SRB",
+    "clubCoefficient": 15,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-omonia",
+    "name": "Omonia",
+    "country": "CYP",
+    "clubCoefficient": 15.5,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uecl-santa-clara",
+    "name": "Santa Clara",
+    "country": "POR",
+    "clubCoefficient": 15.6,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-gent",
+    "name": "Gent",
+    "country": "BEL",
+    "clubCoefficient": 16.9,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-utrecht",
+    "name": "Utrecht",
+    "country": "NED",
+    "clubCoefficient": 16.1,
+    "disciplinaryPoints": 3
+  },
+  {
+    "id": "uecl-heerenveen",
+    "name": "Heerenveen",
+    "country": "NED",
+    "clubCoefficient": 15.6,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-hacken",
+    "name": "Hacken",
+    "country": "SWE",
+    "clubCoefficient": 15.8,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-silkeborg",
+    "name": "Silkeborg",
+    "country": "DEN",
+    "clubCoefficient": 15.6,
+    "disciplinaryPoints": 2
+  },
+  {
+    "id": "uecl-jablonec",
+    "name": "Jablonec",
+    "country": "CZE",
+    "clubCoefficient": 15.2,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-ruzomberok",
+    "name": "Ruzomberok",
+    "country": "SVK",
+    "clubCoefficient": 14.7,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-zilina",
+    "name": "Zilina",
+    "country": "SVK",
+    "clubCoefficient": 15,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-vitesse",
+    "name": "Vitesse",
+    "country": "NED",
+    "clubCoefficient": 15.4,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-lech-poznan",
+    "name": "Lech Poznan",
+    "country": "POL",
+    "clubCoefficient": 16.5,
+    "disciplinaryPoints": 0
+  },
+  {
+    "id": "uecl-aris-limassol",
+    "name": "Aris Limassol",
+    "country": "CYP",
+    "clubCoefficient": 15.3,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-panathinaikos",
+    "name": "Panathinaikos",
+    "country": "GRE",
+    "clubCoefficient": 16.9,
+    "disciplinaryPoints": 1
+  },
+  {
+    "id": "uecl-aek-larnaca",
+    "name": "AEK Larnaca",
+    "country": "CYP",
+    "clubCoefficient": 15.5,
+    "disciplinaryPoints": 1
+  }
+]
