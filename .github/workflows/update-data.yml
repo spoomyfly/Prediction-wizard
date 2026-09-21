@@ -1,0 +1,40 @@
+name: Update tournament data
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # daily at 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch latest results/ratings
+        run: npm run update-data
+        env:
+          # TODO: wire up real source API keys as repo/org secrets once
+          # scripts/update-data.ts implements the corresponding fetchers.
+          # CLUB_ELO and openfootball/football-data.org fixtures need no key;
+          # The Odds API, OpenDota-with-auth and STRATZ do.
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          STRATZ_API_KEY: ${{ secrets.STRATZ_API_KEY }}
+      - name: Commit changes if any
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- public/data; then
+            git add public/data
+            git commit -m "chore: update tournament data"
+            git push
+          else
+            echo "No data changes."
+          fi

@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "generate-seed-data": "tsx scripts/generate-seed-data.ts"
+    "generate-seed-data": "tsx scripts/generate-seed-data.ts",
+    "update-data": "tsx scripts/update-data.ts"
   },
   "dependencies": {
     "pinia": "^2.2.6",
