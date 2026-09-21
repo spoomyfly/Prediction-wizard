@@ -8,7 +8,7 @@ import type {
   TeamSimulationResult,
 } from './types'
 import { hashSeed, mulberry32 } from './rng'
-import { isFootballResults, simulateLeaguePhaseOnce } from './formats/leaguePhase'
+import { isFootballResults, prepareLeaguePhase, simulateLeaguePhaseOnce } from './formats/leaguePhase'
 
 export interface SimulateOptions {
   /** Numeric seed, or a string that gets hashed into one, for reproducible runs. */
@@ -61,9 +61,10 @@ export function simulate(
     )
   }
   const footballResults: FootballResult[] = results
+  const context = prepareLeaguePhase(fixtures, footballResults, config)
 
   for (let run = 0; run < n; run++) {
-    const standings = simulateLeaguePhaseOnce(teams, fixtures, footballResults, config, rng)
+    const standings = simulateLeaguePhaseOnce(teams, fixtures, config, rng, context)
     for (let position = 0; position < standings.length; position++) {
       const row = standings[position]
       positionCounts.get(row.teamId)![position]++

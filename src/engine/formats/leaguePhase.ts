@@ -70,12 +70,7 @@ function applyResultToStandings(
   away.goalDifference = away.goalsFor - away.goalsAgainst
 }
 
-/** Tally standings from a fixed set of (fixture, result) pairs. Pure and side-effect free. */
-export function computeStandings(
-  teams: Team[],
-  fixtures: Fixture[],
-  results: FootballResult[],
-): StandingsRow[] {
+function freshStandingsMap(teams: Team[]): Map<string, StandingsRow> {
   const standings = new Map<string, StandingsRow>()
   for (const team of teams) {
     const row = emptyRow(team.id)
@@ -83,52 +78,104 @@ export function computeStandings(
     row.clubCoefficient = team.clubCoefficient ?? 0
     standings.set(team.id, row)
   }
+  return standings
+}
 
+/** Tally standings from a fixed set of (fixture, result) pairs. Pure and side-effect free. */
+export function computeStandings(
+  teams: Team[],
+  fixtures: Fixture[],
+  results: FootballResult[],
+): StandingsRow[] {
+  const standings = freshStandingsMap(teams)
   const resultByFixture = new Map(results.map((r) => [r.fixtureId, r]))
   for (const fixture of fixtures) {
     const result = resultByFixture.get(fixture.id)
     if (result) applyResultToStandings(standings, fixture, result)
   }
-
   return Array.from(standings.values())
+}
+
+/**
+ * Same tally as computeStandings, but assumes results[i] is exactly the
+ * result for fixtures[i] (no fixtureId lookup needed) — used on the Monte
+ * Carlo hot path, where every fixture always has a result (played or
+ * sampled) in fixture order.
+ */
+function tallyStandingsOrdered(
+  teams: Team[],
+  fixtures: Fixture[],
+  results: FootballResult[],
+): StandingsRow[] {
+  const standings = freshStandingsMap(teams)
+  for (let i = 0; i < fixtures.length; i++) {
+    applyResultToStandings(standings, fixtures[i], results[i])
+  }
+  return Array.from(standings.values())
+}
+
+/** Precomputed, run-invariant inputs for simulateLeaguePhaseOnce, built once per simulate() call. */
+export interface LeaguePhaseContext {
+  opponentsByTeam: Map<string, string[]>
+  playedByFixture: Map<string, FootballResult>
+  needsRandomSalt: boolean
+}
+
+const EMPTY_RANDOM_SALT: Map<string, number> = new Map()
+
+export function prepareLeaguePhase(
+  fixtures: Fixture[],
+  playedResults: FootballResult[],
+  config: CompetitionConfig,
+): LeaguePhaseContext {
+  return {
+    opponentsByTeam: buildOpponentsByTeam(fixtures),
+    playedByFixture: new Map(playedResults.map((r) => [r.fixtureId, r])),
+    needsRandomSalt: config.tiebreakers.includes('random'),
+  }
 }
 
 /**
  * Simulate one Monte Carlo run of the league phase: already-played fixtures
  * keep their real result, remaining fixtures are sampled from the Poisson
- * goal model with per-run rating noise applied. Returns team ids ordered
- * from 1st to last place after applying the configured tiebreaker chain.
+ * goal model with per-run rating noise applied. Returns standings rows
+ * ordered from 1st to last place after applying the configured tiebreaker
+ * chain (`prepareLeaguePhase` hoists everything that doesn't change between
+ * runs, since this runs inside a tight n-times loop).
  */
 export function simulateLeaguePhaseOnce(
   teams: Team[],
   fixtures: Fixture[],
-  playedResults: FootballResult[],
   config: CompetitionConfig,
   rng: RandomFn,
+  context: LeaguePhaseContext,
 ): StandingsRow[] {
   const noisyTeams = applyRatingNoise(teams, config.modelDefaults, rng)
   const teamById = new Map(noisyTeams.map((t) => [t.id, t]))
 
-  const resultByFixture = new Map(playedResults.map((r) => [r.fixtureId, r]))
-  const allResults: FootballResult[] = [...playedResults]
-
-  for (const fixture of fixtures) {
-    if (resultByFixture.has(fixture.id)) continue
-    const home = teamById.get(fixture.homeTeamId)
-    const away = teamById.get(fixture.awayTeamId)
-    if (!home || !away) continue
+  const allResults: FootballResult[] = new Array(fixtures.length)
+  for (let i = 0; i < fixtures.length; i++) {
+    const fixture = fixtures[i]
+    const played = context.playedByFixture.get(fixture.id)
+    if (played) {
+      allResults[i] = played
+      continue
+    }
+    const home = teamById.get(fixture.homeTeamId)!
+    const away = teamById.get(fixture.awayTeamId)!
     const { homeGoals, awayGoals } = sampleFootballScore(rng, home, away, config.modelDefaults)
-    allResults.push({ fixtureId: fixture.id, homeGoals, awayGoals })
+    allResults[i] = { fixtureId: fixture.id, homeGoals, awayGoals }
   }
 
-  const standings = computeStandings(teams, fixtures, allResults)
+  const standings = tallyStandingsOrdered(teams, fixtures, allResults)
   const rowsByTeam = new Map(standings.map((row) => [row.teamId, row]))
-  const opponentsByTeam = buildOpponentsByTeam(fixtures)
-  const randomSalt = new Map(teams.map((t) => [t.id, rng()]))
+  const randomSalt = context.needsRandomSalt
+    ? new Map(teams.map((t) => [t.id, rng()]))
+    : EMPTY_RANDOM_SALT
 
   return sortStandings(standings, config.tiebreakers, {
     rowsByTeam,
-    opponentsByTeam,
+    opponentsByTeam: context.opponentsByTeam,
     randomSalt,
   })
 }
