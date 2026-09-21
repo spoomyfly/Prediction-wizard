@@ -1,182 +1,92 @@
 [
   {
-    "fixtureId": "ucl-0",
-    "homeGoals": 2,
+    "fixtureId": "ucl-md1-0",
+    "homeGoals": 1,
     "awayGoals": 0
   },
   {
-    "fixtureId": "ucl-1",
-    "homeGoals": 0,
+    "fixtureId": "ucl-md1-1",
+    "homeGoals": 2,
     "awayGoals": 3
   },
   {
-    "fixtureId": "ucl-2",
+    "fixtureId": "ucl-md1-2",
     "homeGoals": 3,
-    "awayGoals": 1
+    "awayGoals": 2
   },
   {
-    "fixtureId": "ucl-3",
-    "homeGoals": 3,
+    "fixtureId": "ucl-md1-3",
+    "homeGoals": 0,
+    "awayGoals": 2
+  },
+  {
+    "fixtureId": "ucl-md1-4",
+    "homeGoals": 2,
     "awayGoals": 3
   },
   {
-    "fixtureId": "ucl-4",
-    "homeGoals": 3,
-    "awayGoals": 1
-  },
-  {
-    "fixtureId": "ucl-5",
+    "fixtureId": "ucl-md1-5",
     "homeGoals": 2,
-    "awayGoals": 6
-  },
-  {
-    "fixtureId": "ucl-6",
-    "homeGoals": 1,
     "awayGoals": 1
   },
   {
-    "fixtureId": "ucl-7",
-    "homeGoals": 0,
+    "fixtureId": "ucl-md1-6",
+    "homeGoals": 6,
+    "awayGoals": 1
+  },
+  {
+    "fixtureId": "ucl-md1-7",
+    "homeGoals": 5,
     "awayGoals": 0
   },
   {
-    "fixtureId": "ucl-8",
-    "homeGoals": 1,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-9",
-    "homeGoals": 0,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-10",
-    "homeGoals": 1,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-11",
-    "homeGoals": 3,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-12",
-    "homeGoals": 2,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-13",
-    "homeGoals": 1,
+    "fixtureId": "ucl-md1-8",
+    "homeGoals": 5,
     "awayGoals": 1
   },
   {
-    "fixtureId": "ucl-14",
-    "homeGoals": 1,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-15",
-    "homeGoals": 1,
-    "awayGoals": 1
-  },
-  {
-    "fixtureId": "ucl-16",
-    "homeGoals": 3,
-    "awayGoals": 1
-  },
-  {
-    "fixtureId": "ucl-17",
+    "fixtureId": "ucl-md1-9",
     "homeGoals": 4,
     "awayGoals": 0
   },
   {
-    "fixtureId": "ucl-18",
-    "homeGoals": 2,
-    "awayGoals": 0
+    "fixtureId": "ucl-md1-10",
+    "homeGoals": 4,
+    "awayGoals": 1
   },
   {
-    "fixtureId": "ucl-19",
-    "homeGoals": 2,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-20",
-    "homeGoals": 2,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-21",
-    "homeGoals": 1,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-22",
-    "homeGoals": 1,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-23",
+    "fixtureId": "ucl-md1-11",
     "homeGoals": 1,
     "awayGoals": 1
   },
   {
-    "fixtureId": "ucl-24",
+    "fixtureId": "ucl-md1-12",
+    "homeGoals": 1,
+    "awayGoals": 1
+  },
+  {
+    "fixtureId": "ucl-md1-13",
     "homeGoals": 3,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-25",
-    "homeGoals": 4,
     "awayGoals": 1
   },
   {
-    "fixtureId": "ucl-26",
-    "homeGoals": 4,
-    "awayGoals": 3
-  },
-  {
-    "fixtureId": "ucl-27",
-    "homeGoals": 1,
-    "awayGoals": 2
-  },
-  {
-    "fixtureId": "ucl-28",
+    "fixtureId": "ucl-md1-14",
     "homeGoals": 2,
-    "awayGoals": 2
+    "awayGoals": 1
   },
   {
-    "fixtureId": "ucl-29",
-    "homeGoals": 1,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-30",
-    "homeGoals": 1,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-31",
-    "homeGoals": 1,
-    "awayGoals": 0
-  },
-  {
-    "fixtureId": "ucl-32",
+    "fixtureId": "ucl-md1-15",
     "homeGoals": 0,
+    "awayGoals": 1
+  },
+  {
+    "fixtureId": "ucl-md1-16",
+    "homeGoals": 3,
+    "awayGoals": 1
+  },
+  {
+    "fixtureId": "ucl-md1-17",
+    "homeGoals": 2,
     "awayGoals": 3
-  },
-  {
-    "fixtureId": "ucl-33",
-    "homeGoals": 3,
-    "awayGoals": 1
-  },
-  {
-    "fixtureId": "ucl-34",
-    "homeGoals": 3,
-    "awayGoals": 1
-  },
-  {
-    "fixtureId": "ucl-35",
-    "homeGoals": 1,
-    "awayGoals": 1
   }
 ]

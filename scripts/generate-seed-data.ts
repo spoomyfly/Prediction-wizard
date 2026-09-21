@@ -13,8 +13,8 @@ import path from 'node:path'
 import { mulberry32, hashSeed } from '../src/engine/rng'
 import { sampleFootballScore } from '../src/engine/models/poisson'
 import { sampleSeries } from '../src/engine/models/series'
-import { buildLeaguePhaseFixtures } from '../src/engine/fixtureGenerator'
-import type { Team } from '../src/engine/types'
+import { buildLeaguePhaseFixtures, generateRoundRobinRounds } from '../src/engine/fixtureGenerator'
+import type { Fixture, FootballResult, Team } from '../src/engine/types'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const dataRoot = path.join(__dirname, '..', 'public', 'data')
@@ -62,20 +62,56 @@ function writeJson(dir: string, file: string, data: unknown) {
 
 // --- Football team pools (illustrative composition of well-known clubs) ---
 
-const uclTeams: TeamSeed[] = [
-  ['Real Madrid', 'ESP', 2080], ['Manchester City', 'ENG', 2065], ['Bayern Munich', 'GER', 2040],
-  ['Paris Saint-Germain', 'FRA', 2020], ['Liverpool', 'ENG', 2010], ['Inter', 'ITA', 1970],
-  ['Barcelona', 'ESP', 1985], ['Bayer Leverkusen', 'GER', 1930], ['Atletico Madrid', 'ESP', 1940],
-  ['Atalanta', 'ITA', 1890], ['Juventus', 'ITA', 1900], ['Borussia Dortmund', 'GER', 1895],
-  ['Benfica', 'POR', 1850], ['Arsenal', 'ENG', 1975], ['Club Brugge', 'BEL', 1780],
-  ['Shakhtar Donetsk', 'UKR', 1770], ['Milan', 'ITA', 1885], ['Feyenoord', 'NED', 1810],
-  ['Sporting CP', 'POR', 1860], ['PSV Eindhoven', 'NED', 1820], ['Celtic', 'SCO', 1740],
-  ['RB Leipzig', 'GER', 1875], ['Young Boys', 'SUI', 1690], ['Stuttgart', 'GER', 1820],
-  ['Sparta Prague', 'CZE', 1710], ['Salzburg', 'AUT', 1790], ['Dinamo Zagreb', 'CRO', 1720],
-  ['Monaco', 'FRA', 1830], ['Aston Villa', 'ENG', 1850], ['Bologna', 'ITA', 1750],
-  ['Girona', 'ESP', 1770], ['Slovan Bratislava', 'SVK', 1650], ['Brest', 'FRA', 1740],
-  ['Sturm Graz', 'AUT', 1660], ['Lille', 'FRA', 1790], ['Red Star Belgrade', 'SRB', 1700],
+// UCL 2026/27 league-phase roster — this IS the real draw (verified against
+// multiple independent Russian-language football news sources, Sept 2026),
+// unlike the UEL/UECL/TI pools below which remain illustrative placeholders.
+// Elo/attack/defense ratings are still this generator's own estimates, not a
+// live ClubElo/Odds API feed.
+const uclRealTeams: TeamSeed[] = [
+  ['Arsenal', 'ENG', 1960], ['Manchester City', 'ENG', 2060], ['Manchester United', 'ENG', 1780],
+  ['Aston Villa', 'ENG', 1830], ['Liverpool', 'ENG', 2020],
+  ['Barcelona', 'ESP', 1990], ['Real Madrid', 'ESP', 2090], ['Villarreal', 'ESP', 1820],
+  ['Atletico Madrid', 'ESP', 1930], ['Real Betis', 'ESP', 1790],
+  ['Inter', 'ITA', 1965], ['Napoli', 'ITA', 1900], ['Roma', 'ITA', 1830], ['Como', 'ITA', 1740],
+  ['Bayern Munich', 'GER', 2045], ['Borussia Dortmund', 'GER', 1900], ['RB Leipzig', 'GER', 1880],
+  ['Stuttgart', 'GER', 1830],
+  ['Paris Saint-Germain', 'FRA', 2030], ['Lens', 'FRA', 1780], ['Lille', 'FRA', 1800],
+  ['PSV Eindhoven', 'NED', 1830], ['Feyenoord', 'NED', 1810],
+  ['Porto', 'POR', 1830], ['Sporting CP', 'POR', 1860],
+  ['Club Brugge', 'BEL', 1780],
+  ['Slavia Prague', 'CZE', 1720],
+  ['Galatasaray', 'TUR', 1800], ['Fenerbahce', 'TUR', 1790],
+  ['Shakhtar Donetsk', 'UKR', 1770],
+  ['Bodo/Glimt', 'NOR', 1720], ['Viking', 'NOR', 1620],
+  ['Sabah', 'AZE', 1500],
+  ['LASK', 'AUT', 1620],
+  ['AEK Athens', 'GRE', 1700],
+  ['Slovan Bratislava', 'SVK', 1620],
 ].map(([name, country, elo]) => ({ name: name as string, country: country as string, elo: elo as number }))
+
+// Real matchday 1 results (8-10 September 2026), cross-checked against an
+// independently reported post-matchday-1 standings summary (16 teams on 3
+// points, PSG top with +5 GD/6 GF) — all 18 matches, every team appears once.
+const uclMatchday1: [string, string, number, number][] = [
+  ['AEK Athens', 'LASK', 1, 0],
+  ['Club Brugge', 'Aston Villa', 2, 3],
+  ['Borussia Dortmund', 'Villarreal', 3, 2],
+  ['Porto', 'Manchester City', 0, 2],
+  ['Lille', 'Real Betis', 2, 3],
+  ['Real Madrid', 'Inter', 2, 1],
+  ['Paris Saint-Germain', 'Slovan Bratislava', 6, 1],
+  ['Bayern Munich', 'Bodo/Glimt', 5, 0],
+  ['Barcelona', 'Feyenoord', 5, 1],
+  ['Manchester United', 'Sabah', 4, 0],
+  ['Como', 'RB Leipzig', 4, 1],
+  ['PSV Eindhoven', 'Shakhtar Donetsk', 1, 1],
+  ['Fenerbahce', 'Roma', 1, 1],
+  ['Stuttgart', 'Viking', 3, 1],
+  ['Liverpool', 'Atletico Madrid', 2, 1],
+  ['Napoli', 'Arsenal', 0, 1],
+  ['Sporting CP', 'Galatasaray', 3, 1],
+  ['Slavia Prague', 'Lens', 2, 3],
+]
 
 const uelTeams: TeamSeed[] = [
   ['Manchester United', 'ENG', 1880], ['Tottenham Hotspur', 'ENG', 1860], ['Roma', 'ITA', 1830],
@@ -173,15 +209,92 @@ function generateFootballCompetition(opts: {
   console.log(`${opts.id}: ${teams.length} teams, ${fixtures.length} fixtures, ${results.length} played`)
 }
 
-generateFootballCompetition({
-  id: 'ucl-2026-27',
-  idPrefix: 'ucl',
-  seeds: uclTeams,
-  matchesPerTeam: 8,
-  playedMatchdays: 2,
-  avgGoals: 1.4,
-  homeAdv: 1.15,
-})
+/**
+ * UCL 2026/27: matchday 1 uses the real draw and real results (see
+ * uclRealTeams/uclMatchday1 above). Matchdays 2-8 are synthetic — UEFA's
+ * actual Swiss-pairing algorithm for the remaining rounds isn't something
+ * this generator can source — built the same way as the other competitions,
+ * but skipping any generated pairing that would duplicate a real matchday-1
+ * fixture (round-robin guarantees every pair appears exactly once, so this
+ * just filters out whichever of the 35 possible rounds happens to collide).
+ */
+function generateUcl() {
+  const id = 'ucl-2026-27'
+  const idPrefix = 'ucl'
+  const rng = mulberry32(hashSeed(`${id}-teams`))
+  const teams = buildTeams(uclRealTeams, idPrefix, rng)
+  const idFor = (name: string) => `${idPrefix}-${slugify(name)}`
+
+  const md1Fixtures: Fixture[] = uclMatchday1.map(([home, away], i) => ({
+    id: `${idPrefix}-md1-${i}`,
+    matchday: 1,
+    homeTeamId: idFor(home),
+    awayTeamId: idFor(away),
+  }))
+  const md1Results: FootballResult[] = uclMatchday1.map(([, , homeGoals, awayGoals], i) => ({
+    fixtureId: `${idPrefix}-md1-${i}`,
+    homeGoals,
+    awayGoals,
+  }))
+
+  const pairKey = (a: string, b: string) => [a, b].sort().join('|')
+  const playedPairs = new Set(md1Fixtures.map((f) => pairKey(f.homeTeamId, f.awayTeamId)))
+
+  const allRounds = generateRoundRobinRounds(teams.map((t) => t.id))
+  const cleanRounds: [string, string][][] = []
+  for (const round of allRounds) {
+    if (round.every(([a, b]) => !playedPairs.has(pairKey(a, b)))) cleanRounds.push(round)
+    if (cleanRounds.length === 7) break
+  }
+  if (cleanRounds.length < 7) {
+    throw new Error(`generateUcl: only found ${cleanRounds.length}/7 collision-free synthetic rounds`)
+  }
+
+  let counter = 0
+  const syntheticFixtures: Fixture[] = []
+  cleanRounds.forEach((pairs, idx) => {
+    pairs.forEach(([home, away]) => {
+      syntheticFixtures.push({
+        id: `${idPrefix}-md${idx + 2}-${counter++}`,
+        matchday: idx + 2,
+        homeTeamId: home,
+        awayTeamId: away,
+      })
+    })
+  })
+
+  const fixtures = [...md1Fixtures, ...syntheticFixtures]
+
+  const dir = path.join(dataRoot, id)
+  writeJson(
+    dir,
+    'teams.json',
+    teams.map(({ id, name, country, clubCoefficient, disciplinaryPoints }) => ({
+      id,
+      name,
+      country,
+      clubCoefficient,
+      disciplinaryPoints,
+    })),
+  )
+  writeJson(dir, 'ratings.json', {
+    asOf: '2026-09-21',
+    source: 'mixed',
+    note:
+      'Состав участников и результаты 1-го тура — реальные (сверено по открытым источникам на 21.09.2026). ' +
+      'Сила команд (Эло/атака/оборона) и расписание туров 2-8 — иллюстративная оценка/заглушка, не живой фид ' +
+      'ClubElo/The Odds API — см. docs/strength-params.md.',
+    teams: teams.map(({ id, elo, attack, defense }) => ({ id, elo, attack, defense })),
+  })
+  writeJson(dir, 'fixtures.json', fixtures)
+  writeJson(dir, 'results.json', md1Results)
+
+  console.log(
+    `${id}: ${teams.length} teams (real roster), ${fixtures.length} fixtures, ${md1Results.length} played (real matchday 1)`,
+  )
+}
+
+generateUcl()
 
 generateFootballCompetition({
   id: 'uel-2026-27',
