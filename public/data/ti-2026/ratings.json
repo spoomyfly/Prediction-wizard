@@ -1,7 +1,7 @@
 {
   "asOf": "2026-09-21",
   "source": "placeholder",
-  "note": "Illustrative Elo ratings, not a live OpenDota/STRATZ feed — see docs/strength-params.md.",
+  "note": "Иллюстративные рейтинги Эло-заглушки, не живой фид OpenDota/STRATZ — см. docs/strength-params.md.",
   "teams": [
     {
       "id": "ti-team-spirit",

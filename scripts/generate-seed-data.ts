@@ -163,7 +163,7 @@ function generateFootballCompetition(opts: {
     {
       asOf: '2026-09-21',
       source: 'placeholder',
-      note: 'Illustrative ratings, not a live ClubElo/Odds API feed — see docs/strength-params.md.',
+      note: 'Иллюстративные рейтинги-заглушки, не живой фид ClubElo/The Odds API — см. docs/strength-params.md.',
       teams: teams.map(({ id, elo, attack, defense }) => ({ id, elo, attack, defense })),
     },
   )
@@ -238,7 +238,7 @@ function generateTi() {
   writeJson(dir, 'ratings.json', {
     asOf: '2026-09-21',
     source: 'placeholder',
-    note: 'Illustrative Elo ratings, not a live OpenDota/STRATZ feed — see docs/strength-params.md.',
+    note: 'Иллюстративные рейтинги Эло-заглушки, не живой фид OpenDota/STRATZ — см. docs/strength-params.md.',
     teams: teams.map(({ id, elo }) => ({ id, elo })),
   })
   writeJson(dir, 'fixtures.json', fixtures)

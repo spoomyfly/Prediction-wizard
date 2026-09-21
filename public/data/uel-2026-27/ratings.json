@@ -1,7 +1,7 @@
 {
   "asOf": "2026-09-21",
   "source": "placeholder",
-  "note": "Illustrative ratings, not a live ClubElo/Odds API feed — see docs/strength-params.md.",
+  "note": "Иллюстративные рейтинги-заглушки, не живой фид ClubElo/The Odds API — см. docs/strength-params.md.",
   "teams": [
     {
       "id": "uel-manchester-united",

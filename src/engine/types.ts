@@ -149,4 +149,9 @@ export interface SimulationDone {
   result: SimulationResult
 }
 
-export type SimulationMessage = SimulationProgress | SimulationDone
+export interface SimulationError {
+  type: 'error'
+  message: string
+}
+
+export type SimulationMessage = SimulationProgress | SimulationDone | SimulationError
