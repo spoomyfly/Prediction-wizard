@@ -21,8 +21,8 @@
   },
   {
     "fixtureId": "uel-4",
-    "homeGoals": 1,
-    "awayGoals": 0
+    "homeGoals": 0,
+    "awayGoals": 1
   },
   {
     "fixtureId": "uel-5",
@@ -41,68 +41,68 @@
   },
   {
     "fixtureId": "uel-8",
-    "homeGoals": 6,
-    "awayGoals": 0
+    "homeGoals": 4,
+    "awayGoals": 1
   },
   {
     "fixtureId": "uel-9",
-    "homeGoals": 2,
-    "awayGoals": 3
+    "homeGoals": 0,
+    "awayGoals": 2
   },
   {
     "fixtureId": "uel-10",
-    "homeGoals": 2,
+    "homeGoals": 3,
     "awayGoals": 2
   },
   {
     "fixtureId": "uel-11",
     "homeGoals": 2,
-    "awayGoals": 0
+    "awayGoals": 2
   },
   {
     "fixtureId": "uel-12",
-    "homeGoals": 2,
-    "awayGoals": 4
+    "homeGoals": 0,
+    "awayGoals": 2
   },
   {
     "fixtureId": "uel-13",
-    "homeGoals": 2,
+    "homeGoals": 4,
     "awayGoals": 2
   },
   {
     "fixtureId": "uel-14",
-    "homeGoals": 1,
+    "homeGoals": 2,
     "awayGoals": 1
   },
   {
     "fixtureId": "uel-15",
     "homeGoals": 1,
-    "awayGoals": 2
+    "awayGoals": 1
   },
   {
     "fixtureId": "uel-16",
-    "homeGoals": 0,
+    "homeGoals": 2,
     "awayGoals": 0
   },
   {
     "fixtureId": "uel-17",
     "homeGoals": 0,
-    "awayGoals": 2
+    "awayGoals": 0
   },
   {
     "fixtureId": "uel-18",
-    "homeGoals": 0,
-    "awayGoals": 3
+    "homeGoals": 2,
+    "awayGoals": 1
   },
   {
     "fixtureId": "uel-19",
-    "homeGoals": 1,
-    "awayGoals": 2
+    "homeGoals": 2,
+    "awayGoals": 1
   },
   {
     "fixtureId": "uel-20",
     "homeGoals": 2,
-    "awayGoals": 0
+    "awayGoals": 3
   },
   {
     "fixtureId": "uel-21",
@@ -162,7 +162,7 @@
   {
     "fixtureId": "uel-32",
     "homeGoals": 3,
-    "awayGoals": 5
+    "awayGoals": 4
   },
   {
     "fixtureId": "uel-33",
@@ -171,12 +171,12 @@
   },
   {
     "fixtureId": "uel-34",
-    "homeGoals": 1,
-    "awayGoals": 2
+    "homeGoals": 0,
+    "awayGoals": 1
   },
   {
     "fixtureId": "uel-35",
     "homeGoals": 2,
-    "awayGoals": 1
+    "awayGoals": 2
   }
 ]

@@ -9,8 +9,13 @@ export interface PoissonExpectedGoals {
 
 /**
  * Expected goals for both sides:
- *   lambda_home = avg * att_home * def_away * homeAdv
- *   lambda_away = avg * att_away * def_home
+ *   lambda_home = avg * att_home * def_away * sqrt(homeAdv)
+ *   lambda_away = avg * att_away * def_home / sqrt(homeAdv)
+ *
+ * Split symmetrically via sqrt(homeAdv) rather than applying the whole
+ * multiplier to the home side alone, so homeAdv shifts the home/away
+ * balance without also dragging the match's total expected goals along
+ * with it.
  */
 export function expectedGoals(
   home: Team,
@@ -19,14 +24,15 @@ export function expectedGoals(
 ): PoissonExpectedGoals {
   const avg = defaults.avgGoals ?? 1.35
   const homeAdv = defaults.homeAdv ?? 1.15
+  const homeAdvSqrt = Math.sqrt(homeAdv)
   const attHome = home.attack ?? 1
   const defHome = home.defense ?? 1
   const attAway = away.attack ?? 1
   const defAway = away.defense ?? 1
 
   return {
-    lambdaHome: avg * attHome * defAway * homeAdv,
-    lambdaAway: avg * attAway * defHome,
+    lambdaHome: avg * attHome * defAway * homeAdvSqrt,
+    lambdaAway: (avg * attAway * defHome) / homeAdvSqrt,
   }
 }
 

@@ -6,218 +6,218 @@
     {
       "id": "uecl-chelsea",
       "elo": 1830,
-      "attack": 1.1516666666666666,
-      "defense": 0.87
+      "attack": 1.311111111111111,
+      "defense": 0.7333333333333333
     },
     {
       "id": "uecl-fiorentina",
       "elo": 1770,
-      "attack": 1.0816666666666666,
-      "defense": 0.93
+      "attack": 1.2411111111111108,
+      "defense": 0.7933333333333332
     },
     {
       "id": "uecl-real-sociedad-b",
       "elo": 1560,
-      "attack": 0.8366666666666667,
-      "defense": 1.14
+      "attack": 0.996111111111111,
+      "defense": 1.0033333333333332
     },
     {
       "id": "uecl-rapid-vienna",
       "elo": 1680,
-      "attack": 0.9766666666666667,
-      "defense": 1.02
+      "attack": 1.1361111111111108,
+      "defense": 0.8833333333333333
     },
     {
       "id": "uecl-legia-warsaw",
       "elo": 1640,
-      "attack": 0.93,
-      "defense": 1.06
+      "attack": 1.0894444444444442,
+      "defense": 0.9233333333333332
     },
     {
       "id": "uecl-jagiellonia",
       "elo": 1590,
-      "attack": 0.8716666666666667,
-      "defense": 1.1099999999999999
+      "attack": 1.0311111111111109,
+      "defense": 0.9733333333333333
     },
     {
       "id": "uecl-apoel",
       "elo": 1560,
-      "attack": 0.8366666666666667,
-      "defense": 1.14
+      "attack": 0.996111111111111,
+      "defense": 1.0033333333333332
     },
     {
       "id": "uecl-molde",
       "elo": 1650,
-      "attack": 0.9416666666666667,
-      "defense": 1.05
+      "attack": 1.101111111111111,
+      "defense": 0.9133333333333332
     },
     {
       "id": "uecl-vikingur-reykjavik",
       "elo": 1480,
-      "attack": 0.7433333333333334,
-      "defense": 1.22
+      "attack": 0.9027777777777777,
+      "defense": 1.0833333333333333
     },
     {
       "id": "uecl-djurgardens",
       "elo": 1600,
-      "attack": 0.8833333333333333,
-      "defense": 1.1
+      "attack": 1.0427777777777776,
+      "defense": 0.9633333333333333
     },
     {
       "id": "uecl-cukaricki",
       "elo": 1520,
-      "attack": 0.79,
-      "defense": 1.18
+      "attack": 0.9494444444444443,
+      "defense": 1.0433333333333332
     },
     {
       "id": "uecl-pafos",
       "elo": 1540,
-      "attack": 0.8133333333333334,
-      "defense": 1.16
+      "attack": 0.9727777777777776,
+      "defense": 1.0233333333333332
     },
     {
       "id": "uecl-zrinjski-mostar",
       "elo": 1500,
-      "attack": 0.7666666666666667,
-      "defense": 1.2
+      "attack": 0.926111111111111,
+      "defense": 1.0633333333333332
     },
     {
       "id": "uecl-lugano",
       "elo": 1570,
-      "attack": 0.8483333333333334,
-      "defense": 1.13
+      "attack": 1.0077777777777777,
+      "defense": 0.9933333333333333
     },
     {
       "id": "uecl-astana",
       "elo": 1520,
-      "attack": 0.79,
-      "defense": 1.18
+      "attack": 0.9494444444444443,
+      "defense": 1.0433333333333332
     },
     {
       "id": "uecl-the-new-saints",
       "elo": 1380,
-      "attack": 0.6266666666666667,
-      "defense": 1.32
+      "attack": 0.786111111111111,
+      "defense": 1.1833333333333331
     },
     {
       "id": "uecl-shamrock-rovers",
       "elo": 1500,
-      "attack": 0.7666666666666667,
-      "defense": 1.2
+      "attack": 0.926111111111111,
+      "defense": 1.0633333333333332
     },
     {
       "id": "uecl-larne",
       "elo": 1420,
-      "attack": 0.6733333333333333,
-      "defense": 1.28
+      "attack": 0.8327777777777776,
+      "defense": 1.1433333333333333
     },
     {
       "id": "uecl-noah",
       "elo": 1470,
-      "attack": 0.7316666666666667,
-      "defense": 1.23
+      "attack": 0.891111111111111,
+      "defense": 1.0933333333333333
     },
     {
       "id": "uecl-petrocub",
       "elo": 1440,
-      "attack": 0.6966666666666667,
-      "defense": 1.26
+      "attack": 0.856111111111111,
+      "defense": 1.1233333333333333
     },
     {
       "id": "uecl-backa-topola",
       "elo": 1500,
-      "attack": 0.7666666666666667,
-      "defense": 1.2
+      "attack": 0.926111111111111,
+      "defense": 1.0633333333333332
     },
     {
       "id": "uecl-omonia",
       "elo": 1550,
-      "attack": 0.825,
-      "defense": 1.15
+      "attack": 0.9844444444444443,
+      "defense": 1.0133333333333332
     },
     {
       "id": "uecl-santa-clara",
       "elo": 1560,
-      "attack": 0.8366666666666667,
-      "defense": 1.14
+      "attack": 0.996111111111111,
+      "defense": 1.0033333333333332
     },
     {
       "id": "uecl-gent",
       "elo": 1690,
-      "attack": 0.9883333333333333,
-      "defense": 1.01
+      "attack": 1.1477777777777776,
+      "defense": 0.8733333333333333
     },
     {
       "id": "uecl-utrecht",
       "elo": 1610,
-      "attack": 0.895,
-      "defense": 1.09
+      "attack": 1.0544444444444443,
+      "defense": 0.9533333333333333
     },
     {
       "id": "uecl-heerenveen",
       "elo": 1560,
-      "attack": 0.8366666666666667,
-      "defense": 1.14
+      "attack": 0.996111111111111,
+      "defense": 1.0033333333333332
     },
     {
       "id": "uecl-hacken",
       "elo": 1580,
-      "attack": 0.86,
-      "defense": 1.12
+      "attack": 1.0194444444444444,
+      "defense": 0.9833333333333333
     },
     {
       "id": "uecl-silkeborg",
       "elo": 1560,
-      "attack": 0.8366666666666667,
-      "defense": 1.14
+      "attack": 0.996111111111111,
+      "defense": 1.0033333333333332
     },
     {
       "id": "uecl-jablonec",
       "elo": 1520,
-      "attack": 0.79,
-      "defense": 1.18
+      "attack": 0.9494444444444443,
+      "defense": 1.0433333333333332
     },
     {
       "id": "uecl-ruzomberok",
       "elo": 1470,
-      "attack": 0.7316666666666667,
-      "defense": 1.23
+      "attack": 0.891111111111111,
+      "defense": 1.0933333333333333
     },
     {
       "id": "uecl-zilina",
       "elo": 1500,
-      "attack": 0.7666666666666667,
-      "defense": 1.2
+      "attack": 0.926111111111111,
+      "defense": 1.0633333333333332
     },
     {
       "id": "uecl-vitesse",
       "elo": 1540,
-      "attack": 0.8133333333333334,
-      "defense": 1.16
+      "attack": 0.9727777777777776,
+      "defense": 1.0233333333333332
     },
     {
       "id": "uecl-lech-poznan",
       "elo": 1650,
-      "attack": 0.9416666666666667,
-      "defense": 1.05
+      "attack": 1.101111111111111,
+      "defense": 0.9133333333333332
     },
     {
       "id": "uecl-aris-limassol",
       "elo": 1530,
-      "attack": 0.8016666666666667,
-      "defense": 1.17
+      "attack": 0.961111111111111,
+      "defense": 1.0333333333333332
     },
     {
       "id": "uecl-panathinaikos",
       "elo": 1690,
-      "attack": 0.9883333333333333,
-      "defense": 1.01
+      "attack": 1.1477777777777776,
+      "defense": 0.8733333333333333
     },
     {
       "id": "uecl-aek-larnaca",
       "elo": 1550,
-      "attack": 0.825,
-      "defense": 1.15
+      "attack": 0.9844444444444443,
+      "defense": 1.0133333333333332
     }
   ]
 }

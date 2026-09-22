@@ -6,218 +6,218 @@
     {
       "id": "uel-manchester-united",
       "elo": 1880,
-      "attack": 1.21,
-      "defense": 0.8200000000000001
+      "attack": 1.187314814814815,
+      "defense": 0.8394444444444445
     },
     {
       "id": "uel-tottenham-hotspur",
       "elo": 1860,
-      "attack": 1.1866666666666665,
-      "defense": 0.84
+      "attack": 1.1639814814814815,
+      "defense": 0.8594444444444446
     },
     {
       "id": "uel-roma",
       "elo": 1830,
-      "attack": 1.1516666666666666,
-      "defense": 0.87
+      "attack": 1.1289814814814816,
+      "defense": 0.8894444444444446
     },
     {
       "id": "uel-lazio",
       "elo": 1810,
-      "attack": 1.1283333333333334,
-      "defense": 0.89
+      "attack": 1.1056481481481484,
+      "defense": 0.9094444444444446
     },
     {
       "id": "uel-ajax",
       "elo": 1790,
-      "attack": 1.105,
-      "defense": 0.91
+      "attack": 1.082314814814815,
+      "defense": 0.9294444444444445
     },
     {
       "id": "uel-real-sociedad",
       "elo": 1780,
-      "attack": 1.0933333333333333,
-      "defense": 0.92
+      "attack": 1.0706481481481482,
+      "defense": 0.9394444444444445
     },
     {
       "id": "uel-real-betis",
       "elo": 1760,
-      "attack": 1.07,
-      "defense": 0.94
+      "attack": 1.047314814814815,
+      "defense": 0.9594444444444445
     },
     {
       "id": "uel-porto",
       "elo": 1820,
-      "attack": 1.14,
-      "defense": 0.88
+      "attack": 1.1173148148148149,
+      "defense": 0.8994444444444446
     },
     {
       "id": "uel-fenerbahce",
       "elo": 1790,
-      "attack": 1.105,
-      "defense": 0.91
+      "attack": 1.082314814814815,
+      "defense": 0.9294444444444445
     },
     {
       "id": "uel-galatasaray",
       "elo": 1800,
-      "attack": 1.1166666666666667,
-      "defense": 0.9
+      "attack": 1.0939814814814817,
+      "defense": 0.9194444444444445
     },
     {
       "id": "uel-besiktas",
       "elo": 1720,
-      "attack": 1.0233333333333334,
-      "defense": 0.98
+      "attack": 1.0006481481481482,
+      "defense": 0.9994444444444446
     },
     {
       "id": "uel-rangers",
       "elo": 1710,
-      "attack": 1.0116666666666667,
-      "defense": 0.99
+      "attack": 0.9889814814814816,
+      "defense": 1.0094444444444446
     },
     {
       "id": "uel-olympiacos",
       "elo": 1740,
-      "attack": 1.0466666666666666,
-      "defense": 0.96
+      "attack": 1.0239814814814816,
+      "defense": 0.9794444444444446
     },
     {
       "id": "uel-paok",
       "elo": 1700,
-      "attack": 1,
-      "defense": 1
+      "attack": 0.977314814814815,
+      "defense": 1.0194444444444446
     },
     {
       "id": "uel-ferencvaros",
       "elo": 1650,
-      "attack": 0.9416666666666667,
-      "defense": 1.05
+      "attack": 0.9189814814814816,
+      "defense": 1.0694444444444446
     },
     {
       "id": "uel-malmo",
       "elo": 1610,
-      "attack": 0.895,
-      "defense": 1.09
+      "attack": 0.872314814814815,
+      "defense": 1.1094444444444445
     },
     {
       "id": "uel-union-saint-gilloise",
       "elo": 1720,
-      "attack": 1.0233333333333334,
-      "defense": 0.98
+      "attack": 1.0006481481481482,
+      "defense": 0.9994444444444446
     },
     {
       "id": "uel-anderlecht",
       "elo": 1690,
-      "attack": 0.9883333333333333,
-      "defense": 1.01
+      "attack": 0.9656481481481483,
+      "defense": 1.0294444444444446
     },
     {
       "id": "uel-nice",
       "elo": 1750,
-      "attack": 1.0583333333333333,
-      "defense": 0.95
+      "attack": 1.0356481481481483,
+      "defense": 0.9694444444444446
     },
     {
       "id": "uel-lyon",
       "elo": 1780,
-      "attack": 1.0933333333333333,
-      "defense": 0.92
+      "attack": 1.0706481481481482,
+      "defense": 0.9394444444444445
     },
     {
       "id": "uel-viktoria-plzen",
       "elo": 1670,
-      "attack": 0.965,
-      "defense": 1.03
+      "attack": 0.9423148148148149,
+      "defense": 1.0494444444444446
     },
     {
       "id": "uel-slavia-prague",
       "elo": 1730,
-      "attack": 1.035,
-      "defense": 0.97
+      "attack": 1.012314814814815,
+      "defense": 0.9894444444444446
     },
     {
       "id": "uel-fcsb",
       "elo": 1640,
-      "attack": 0.93,
-      "defense": 1.06
+      "attack": 0.9073148148148149,
+      "defense": 1.0794444444444447
     },
     {
       "id": "uel-qarabag",
       "elo": 1660,
-      "attack": 0.9533333333333334,
-      "defense": 1.04
+      "attack": 0.9306481481481482,
+      "defense": 1.0594444444444446
     },
     {
       "id": "uel-maccabi-tel-aviv",
       "elo": 1650,
-      "attack": 0.9416666666666667,
-      "defense": 1.05
+      "attack": 0.9189814814814816,
+      "defense": 1.0694444444444446
     },
     {
       "id": "uel-hoffenheim",
       "elo": 1740,
-      "attack": 1.0466666666666666,
-      "defense": 0.96
+      "attack": 1.0239814814814816,
+      "defense": 0.9794444444444446
     },
     {
       "id": "uel-braga",
       "elo": 1750,
-      "attack": 1.0583333333333333,
-      "defense": 0.95
+      "attack": 1.0356481481481483,
+      "defense": 0.9694444444444446
     },
     {
       "id": "uel-vitoria-guimaraes",
       "elo": 1690,
-      "attack": 0.9883333333333333,
-      "defense": 1.01
+      "attack": 0.9656481481481483,
+      "defense": 1.0294444444444446
     },
     {
       "id": "uel-twente",
       "elo": 1700,
-      "attack": 1,
-      "defense": 1
+      "attack": 0.977314814814815,
+      "defense": 1.0194444444444446
     },
     {
       "id": "uel-az-alkmaar",
       "elo": 1720,
-      "attack": 1.0233333333333334,
-      "defense": 0.98
+      "attack": 1.0006481481481482,
+      "defense": 0.9994444444444446
     },
     {
       "id": "uel-elfsborg",
       "elo": 1580,
-      "attack": 0.86,
-      "defense": 1.12
+      "attack": 0.837314814814815,
+      "defense": 1.1394444444444445
     },
     {
       "id": "uel-midtjylland",
       "elo": 1700,
-      "attack": 1,
-      "defense": 1
+      "attack": 0.977314814814815,
+      "defense": 1.0194444444444446
     },
     {
       "id": "uel-bodo-glimt",
       "elo": 1710,
-      "attack": 1.0116666666666667,
-      "defense": 0.99
+      "attack": 0.9889814814814816,
+      "defense": 1.0094444444444446
     },
     {
       "id": "uel-heidenheim",
       "elo": 1650,
-      "attack": 0.9416666666666667,
-      "defense": 1.05
+      "attack": 0.9189814814814816,
+      "defense": 1.0694444444444446
     },
     {
       "id": "uel-rigas-fs",
       "elo": 1500,
-      "attack": 0.7666666666666667,
-      "defense": 1.2
+      "attack": 0.7439814814814816,
+      "defense": 1.2194444444444446
     },
     {
       "id": "uel-cercle-brugge",
       "elo": 1620,
-      "attack": 0.9066666666666667,
-      "defense": 1.08
+      "attack": 0.8839814814814816,
+      "defense": 1.0994444444444447
     }
   ]
 }

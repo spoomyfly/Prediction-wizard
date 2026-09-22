@@ -14,6 +14,7 @@ import { mulberry32, hashSeed } from '../src/engine/rng'
 import { sampleFootballScore } from '../src/engine/models/poisson'
 import { sampleSeries } from '../src/engine/models/series'
 import { buildLeaguePhaseFixtures, generateRoundRobinRounds } from '../src/engine/fixtureGenerator'
+import { resolveTeamStrengths } from '../src/engine/strength'
 import type { Fixture, FootballResult, Team } from '../src/engine/types'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -32,27 +33,18 @@ function slugify(name: string): string {
     .replace(/(^-|-$)/g, '')
 }
 
-function ratingsFromElo(elo: number) {
-  const strength = (elo - 1700) / 300
-  const attack = Math.min(1.7, Math.max(0.55, 1 + strength * 0.35))
-  const defense = Math.min(1.5, Math.max(0.55, 1 - strength * 0.3))
-  return { attack, defense }
-}
-
 function buildTeams(seeds: TeamSeed[], idPrefix: string, rng: () => number): Team[] {
-  return seeds.map((seed) => {
-    const { attack, defense } = ratingsFromElo(seed.elo)
-    return {
-      id: `${idPrefix}-${slugify(seed.name)}`,
-      name: seed.name,
-      country: seed.country,
-      elo: seed.elo,
-      attack,
-      defense,
-      clubCoefficient: Math.round(seed.elo / 10) / 10,
-      disciplinaryPoints: Math.floor(rng() * 4),
-    }
-  })
+  const base: Team[] = seeds.map((seed) => ({
+    id: `${idPrefix}-${slugify(seed.name)}`,
+    name: seed.name,
+    country: seed.country,
+    elo: seed.elo,
+    clubCoefficient: Math.round(seed.elo / 10) / 10,
+    disciplinaryPoints: Math.floor(rng() * 4),
+  }))
+  // Same Elo->attack/defense formula the runtime "Сила команд" panel uses
+  // (src/engine/strength.ts) — one source of truth for both.
+  return resolveTeamStrengths(base, { ratingInfluence: 1 })
 }
 
 function writeJson(dir: string, file: string, data: unknown) {

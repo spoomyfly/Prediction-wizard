@@ -12,10 +12,22 @@ describe('expectedGoals', () => {
       avgGoals: 1.4,
       homeAdv: 1.2,
     })
-    // lambda_home = avg * att_home * def_away * homeAdv
-    expect(lambdaHome).toBeCloseTo(1.4 * 1.2 * 1.1 * 1.2, 10)
-    // lambda_away = avg * att_away * def_home
-    expect(lambdaAway).toBeCloseTo(1.4 * 0.8 * 0.9, 10)
+    // lambda_home = avg * att_home * def_away * sqrt(homeAdv)
+    expect(lambdaHome).toBeCloseTo(1.4 * 1.2 * 1.1 * Math.sqrt(1.2), 10)
+    // lambda_away = avg * att_away * def_home / sqrt(homeAdv)
+    expect(lambdaAway).toBeCloseTo((1.4 * 0.8 * 0.9) / Math.sqrt(1.2), 10)
+  })
+
+  it('keeps total expected goals unchanged as homeAdv moves (symmetric split)', () => {
+    // With home and away swapped-in as equal-strength teams, lambdaHome *
+    // lambdaAway should stay constant across homeAdv values — only the
+    // home/away balance should shift, not the aggregate.
+    const even: Team = { id: 'even', name: 'Even', attack: 1, defense: 1 }
+    const low = expectedGoals(even, even, { avgGoals: 1.4, homeAdv: 1.0 })
+    const high = expectedGoals(even, even, { avgGoals: 1.4, homeAdv: 1.3 })
+    expect(low.lambdaHome * low.lambdaAway).toBeCloseTo(high.lambdaHome * high.lambdaAway, 10)
+    expect(high.lambdaHome).toBeGreaterThan(low.lambdaHome)
+    expect(high.lambdaAway).toBeLessThan(low.lambdaAway)
   })
 })
 
