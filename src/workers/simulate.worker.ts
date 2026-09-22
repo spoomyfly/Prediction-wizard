@@ -1,7 +1,10 @@
 /// <reference lib="webworker" />
 import { simulate } from '../engine/simulate'
-import { resolveTeamStrengths } from '../engine/strength'
+import { prepareTeamStrengths, resolveTeamStrengths } from '../engine/strength'
 import type { StrengthParams } from '../engine/strength'
+import { defaultEloParams } from '../engine/elo'
+import type { EloParams } from '../engine/elo'
+import { isFootballResults } from '../engine/formats/leaguePhase'
 import type {
   CompetitionConfig,
   Fixture,
@@ -23,13 +26,27 @@ export interface SimulateRequest {
   strengthParams?: StrengthParams
   /** "Сила команд" panel overrides for the global match-model sliders (avgGoals, homeAdv, sigma, rho). */
   modelOverrides?: Partial<ModelDefaults>
+  /** "Сила команд" panel overrides for the Elo rating model (K, home advantage in Elo points, form, coach boost). */
+  eloOverrides?: Partial<EloParams>
 }
 
 self.onmessage = (event: MessageEvent<SimulateRequest>) => {
-  const { config, teams, fixtures, results, runs, seed, strengthParams, modelOverrides } = event.data
+  const { config, teams, fixtures, results, runs, seed, strengthParams, modelOverrides, eloOverrides } =
+    event.data
 
   try {
-    const effectiveTeams = resolveTeamStrengths(teams, strengthParams)
+    // Football competitions replay their played results through the Elo model
+    // first (current rating + form + coach-change uncertainty); anything else
+    // (e.g. Dota series) just goes straight to the attack/defense stage.
+    const effectiveTeams = isFootballResults(results)
+      ? prepareTeamStrengths(
+          teams,
+          fixtures,
+          results,
+          { ...defaultEloParams, ...eloOverrides },
+          strengthParams,
+        ).teams
+      : resolveTeamStrengths(teams, strengthParams)
     const effectiveConfig: CompetitionConfig = modelOverrides
       ? { ...config, modelDefaults: { ...config.modelDefaults, ...modelOverrides } }
       : config

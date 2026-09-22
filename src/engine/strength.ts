@@ -1,11 +1,15 @@
-import type { Team } from './types'
+import type { Fixture, FootballResult, Team } from './types'
+import { applyEloStates, replayElo } from './elo'
+import type { EloParams, TeamEloState } from './elo'
 
 /** Per-team manual overrides, keyed by team id. */
 export interface TeamAdjustment {
-  /** Override Elo rating for this team. Falls back to the team's own `elo` when unset. */
+  /** Override the team's BASELINE Elo (season start). Played results still replay on top of it. */
   elo?: number
   /** Manual boost/penalty, e.g. 0.1 = +10%. Raises attack and lowers defense (and vice versa for negative values). */
   adjustmentPct?: number
+  /** Matchday this team changed coach before — raises Elo's K and this team's simulation noise for a while. */
+  coachChangedBeforeMatchday?: number
 }
 
 export interface StrengthParams {
@@ -87,4 +91,58 @@ export function resolveTeamStrengths(teams: Team[], params: StrengthParams | und
     attack: team.attack !== undefined ? clamp(team.attack / meanAttack) : team.attack,
     defense: team.defense !== undefined ? clamp(team.defense / meanDefense) : team.defense,
   }))
+}
+
+export interface PreparedStrength {
+  /** Teams ready to hand to simulate(): current Elo, attack/defense, per-team noise. */
+  teams: Team[]
+  /** Per-team Elo breakdown (baseline, current, form, history) for display. */
+  eloStates: Map<string, TeamEloState>
+}
+
+/**
+ * The full team-strength pipeline for one simulation:
+ *
+ *   baseline Elo (+ panel overrides)
+ *     -> replay every played result (elo.ts): current Elo, form, coach-change uncertainty
+ *     -> attack/defense (resolveTeamStrengths)
+ *
+ * Per-team Elo overrides are treated as the BASELINE — played results still
+ * replay on top of them — so they're consumed here and deliberately not passed
+ * on to resolveTeamStrengths, which would otherwise re-apply them after the
+ * replay and silently undo it.
+ */
+export function prepareTeamStrengths(
+  teams: Team[],
+  fixtures: Fixture[],
+  results: FootballResult[],
+  eloParams: EloParams,
+  params: StrengthParams | undefined,
+): PreparedStrength {
+  const overrides = params?.overrides ?? {}
+
+  const withBaseline = teams.map((team) => {
+    const override = overrides[team.id]
+    if (!override) return team
+    return {
+      ...team,
+      elo: override.elo ?? team.elo,
+      coachChangedBeforeMatchday:
+        override.coachChangedBeforeMatchday ?? team.coachChangedBeforeMatchday,
+    }
+  })
+
+  const eloStates = replayElo(withBaseline, fixtures, results, eloParams)
+  const withCurrentElo = applyEloStates(withBaseline, eloStates)
+
+  const adjustmentsOnly: StrengthParams | undefined = params && {
+    ratingInfluence: params.ratingInfluence,
+    overrides: Object.fromEntries(
+      Object.entries(overrides)
+        .filter(([, override]) => override.adjustmentPct)
+        .map(([id, override]) => [id, { adjustmentPct: override.adjustmentPct }]),
+    ),
+  }
+
+  return { teams: resolveTeamStrengths(withCurrentElo, adjustmentsOnly), eloStates }
 }

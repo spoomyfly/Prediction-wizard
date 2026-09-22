@@ -36,6 +36,10 @@ export interface Team {
   clubCoefficient?: number
   /** Disciplinary points accumulated so far (lower is better, used only as a tiebreaker). */
   disciplinaryPoints?: number
+  /** Matchday the team changed coach before (1-based). Raises Elo's K and this team's noise for a while after. */
+  coachChangedBeforeMatchday?: number
+  /** Per-team multiplier on the global sigma, used to widen a single team's uncertainty (see elo.ts). */
+  sigmaMultiplier?: number
 }
 
 export interface Fixture {

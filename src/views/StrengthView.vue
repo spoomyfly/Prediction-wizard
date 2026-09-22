@@ -2,8 +2,10 @@
 import { computed, onBeforeUnmount, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { getCompetition } from '../competitions'
-import { useSimulationStore, type ModelOverrideKey } from '../stores/simulation'
-import { resolveTeamStrengths } from '../engine/strength'
+import { useSimulationStore, type EloOverrideKey, type ModelOverrideKey } from '../stores/simulation'
+import { prepareTeamStrengths } from '../engine/strength'
+import { defaultEloParams } from '../engine/elo'
+import type { FootballResult } from '../engine/types'
 
 const props = defineProps<{ competitionId: string }>()
 
@@ -20,21 +22,31 @@ onMounted(() => {
 
 const isFootball = computed(() => config.value?.sport === 'football')
 
-// Live preview: resolveTeamStrengths is a pure, cheap function (no Monte
-// Carlo), so attack/defense in the table below update on every keystroke
-// without waiting for a simulation run.
-const previewTeams = computed(() => {
-  const teams = state.value.data?.teams ?? []
-  if (!isFootball.value) return teams
-  return resolveTeamStrengths(teams, {
-    ratingInfluence: strength.value.ratingInfluence,
-    overrides: strength.value.teamAdjustments,
-  })
+const eloParams = computed(() => ({ ...defaultEloParams, ...strength.value.eloOverrides }))
+
+// Live preview: the whole strength pipeline (Elo replay + form + attack/defense)
+// is pure and cheap — no Monte Carlo — so the table below updates on every
+// keystroke without waiting for a simulation run.
+const preview = computed(() => {
+  const data = state.value.data
+  if (!data || !isFootball.value) return undefined
+  return prepareTeamStrengths(
+    data.teams,
+    data.fixtures,
+    data.results as FootballResult[],
+    eloParams.value,
+    { ratingInfluence: strength.value.ratingInfluence, overrides: strength.value.teamAdjustments },
+  )
 })
 
-const sortedTeams = computed(() =>
-  [...previewTeams.value].sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0)),
-)
+const sortedTeams = computed(() => {
+  const teams = preview.value?.teams ?? state.value.data?.teams ?? []
+  return [...teams].sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0))
+})
+
+function eloStateFor(teamId: string) {
+  return preview.value?.eloStates.get(teamId)
+}
 
 // Debounced auto-recalculation of the full Monte Carlo result whenever a
 // param changes: a cheap 1k-run preview while actively adjusting, and a
@@ -91,7 +103,15 @@ function onGlobalInput(key: ModelOverrideKey, value: number) {
   runPreview()
 }
 
-function teamElo(teamId: string): number | undefined {
+function eloValue(key: EloOverrideKey): number {
+  return strength.value.eloOverrides[key] ?? defaultEloParams[key]
+}
+function onEloInput(key: EloOverrideKey, value: number) {
+  store.setEloOverride(props.competitionId, key, value)
+  runPreview()
+}
+
+function teamBaseElo(teamId: string): number | undefined {
   const override = strength.value.teamAdjustments[teamId]?.elo
   if (override !== undefined) return override
   return state.value.data?.teams.find((t) => t.id === teamId)?.elo
@@ -99,10 +119,16 @@ function teamElo(teamId: string): number | undefined {
 function teamAdjustmentPct(teamId: string): number {
   return (strength.value.teamAdjustments[teamId]?.adjustmentPct ?? 0) * 100
 }
+function teamCoachMatchday(teamId: string): number | undefined {
+  return (
+    strength.value.teamAdjustments[teamId]?.coachChangedBeforeMatchday ??
+    state.value.data?.teams.find((t) => t.id === teamId)?.coachChangedBeforeMatchday
+  )
+}
 
 function onTeamEloInput(teamId: string, value: string) {
   const num = Number(value)
-  store.setTeamAdjustment(props.competitionId, teamId, { elo: Number.isFinite(num) ? num : undefined })
+  store.setTeamAdjustment(props.competitionId, teamId, { elo: Number.isFinite(num) && value !== '' ? num : undefined })
   runPreview()
 }
 function onTeamAdjustmentInput(teamId: string, value: string) {
@@ -111,6 +137,23 @@ function onTeamAdjustmentInput(teamId: string, value: string) {
     adjustmentPct: Number.isFinite(num) ? num / 100 : 0,
   })
   runPreview()
+}
+function onTeamCoachInput(teamId: string, value: string) {
+  const num = Number(value)
+  store.setTeamAdjustment(props.competitionId, teamId, {
+    coachChangedBeforeMatchday: value !== '' && Number.isFinite(num) && num > 0 ? Math.round(num) : undefined,
+  })
+  runPreview()
+}
+
+function formLabel(teamId: string): string {
+  const eloState = eloStateFor(teamId)
+  if (!eloState) return '—'
+  if (eloState.matchesPlayed < eloParams.value.formMinMatches) {
+    return `— (${eloState.matchesPlayed}/${eloParams.value.formMinMatches})`
+  }
+  const sign = eloState.form > 0 ? '+' : ''
+  return `${sign}${(eloState.form * 100).toFixed(0)}%`
 }
 
 function resetAll() {
@@ -239,9 +282,76 @@ const hasOverrides = computed(() => {
               @change="runFinal"
             />
           </label>
-          <label class="disabled-field" title="Нужна история результатов по турам — не собирается в этой сборке">
-            Затухание формы <span class="soon-badge">скоро</span>
-            <input type="range" min="0" max="1" step="0.05" value="0" disabled />
+        </div>
+      </div>
+
+      <div v-if="isFootball" class="card global-params">
+        <h2>Рейтинг Эло</h2>
+        <p class="muted params-note">
+          Текущий Эло не хранится, а пересчитывается: базовый рейтинг на старт сезона прогоняется
+          через все сыгранные матчи. Форма измеряет отклонение от ожиданий Эло, поэтому не
+          дублирует уже учтённые в рейтинге результаты.
+        </p>
+        <div class="params-grid">
+          <label>
+            <span class="label-row">
+              <span>K — скорость изменения Эло</span>
+              <span class="value-badge">{{ eloValue('kBase').toFixed(0) }}</span>
+            </span>
+            <input
+              type="range"
+              min="5"
+              max="60"
+              step="1"
+              :value="eloValue('kBase')"
+              @input="onEloInput('kBase', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label>
+            <span class="label-row">
+              <span>Преимущество поля (очки Эло)</span>
+              <span class="value-badge">{{ eloValue('homeAdvantageElo').toFixed(0) }}</span>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="150"
+              step="5"
+              :value="eloValue('homeAdvantageElo')"
+              @input="onEloInput('homeAdvantageElo', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label>
+            <span class="label-row">
+              <span>Вес текущей формы</span>
+              <span class="value-badge">{{ eloValue('formWeight').toFixed(2) }}</span>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.05"
+              :value="eloValue('formWeight')"
+              @input="onEloInput('formWeight', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label>
+            <span class="label-row">
+              <span>Буст K при смене тренера</span>
+              <span class="value-badge">×{{ (1 + eloValue('coachKBoost')).toFixed(1) }}</span>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="2"
+              step="0.1"
+              :value="eloValue('coachKBoost')"
+              @input="onEloInput('coachKBoost', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
           </label>
         </div>
       </div>
@@ -253,11 +363,15 @@ const hasOverrides = computed(() => {
               <th>#</th>
               <th>Команда</th>
               <th v-if="state.data.teams[0]?.country">Страна</th>
-              <th>Эло</th>
+              <th v-if="isFootball" title="Рейтинг на старт сезона — редактируемый">Базовый Эло</th>
+              <th v-else>Эло</th>
+              <th v-if="isFootball" title="Базовый Эло после прогона всех сыгранных матчей">Текущий</th>
+              <th v-if="isFootball" title="Изменение Эло с начала сезона">Δ</th>
+              <th v-if="isFootball" title="Отклонение от ожиданий Эло в последних матчах">Форма</th>
+              <th v-if="isFootball" title="Номер тура, перед которым сменился тренер (пусто — не менялся)">Смена трен.</th>
               <th v-if="isFootball">Коррект. ±%</th>
               <th v-if="isFootball">Атака</th>
               <th v-if="isFootball">Оборона</th>
-              <th v-if="isFootball">Коэфф. УЕФА</th>
             </tr>
           </thead>
           <tbody>
@@ -270,11 +384,39 @@ const hasOverrides = computed(() => {
                   v-if="isFootball"
                   class="cell-input"
                   type="number"
-                  :value="teamElo(team.id)"
+                  :value="teamBaseElo(team.id)"
                   @input="onTeamEloInput(team.id, ($event.target as HTMLInputElement).value)"
                   @change="runFinal"
                 />
                 <span v-else>{{ team.elo?.toFixed(0) ?? '—' }}</span>
+              </td>
+              <td v-if="isFootball">{{ eloStateFor(team.id)?.currentElo.toFixed(0) ?? '—' }}</td>
+              <td v-if="isFootball">
+                <span
+                  v-if="eloStateFor(team.id)"
+                  :class="{
+                    'delta-up': eloStateFor(team.id)!.currentElo - eloStateFor(team.id)!.baseElo > 0.5,
+                    'delta-down': eloStateFor(team.id)!.currentElo - eloStateFor(team.id)!.baseElo < -0.5,
+                  }"
+                >
+                  {{ (eloStateFor(team.id)!.currentElo - eloStateFor(team.id)!.baseElo > 0 ? '+' : '')
+                  }}{{ (eloStateFor(team.id)!.currentElo - eloStateFor(team.id)!.baseElo).toFixed(0) }}
+                </span>
+                <span v-else>—</span>
+              </td>
+              <td v-if="isFootball" class="muted-cell">{{ formLabel(team.id) }}</td>
+              <td v-if="isFootball">
+                <input
+                  class="cell-input narrow"
+                  type="number"
+                  min="1"
+                  max="8"
+                  step="1"
+                  placeholder="—"
+                  :value="teamCoachMatchday(team.id) ?? ''"
+                  @input="onTeamCoachInput(team.id, ($event.target as HTMLInputElement).value)"
+                  @change="runFinal"
+                />
               </td>
               <td v-if="isFootball">
                 <input
@@ -290,7 +432,6 @@ const hasOverrides = computed(() => {
               </td>
               <td v-if="isFootball">{{ team.attack?.toFixed(2) ?? '—' }}</td>
               <td v-if="isFootball">{{ team.defense?.toFixed(2) ?? '—' }}</td>
-              <td v-if="isFootball">{{ team.clubCoefficient?.toFixed(1) ?? '—' }}</td>
             </tr>
           </tbody>
         </table>
@@ -430,5 +571,22 @@ h1 {
   border-radius: 4px;
   background: var(--bg);
   color: var(--fg);
+}
+.cell-input.narrow {
+  width: 48px;
+}
+.params-note {
+  margin: -6px 0 12px;
+  font-size: 0.85rem;
+  max-width: 70ch;
+}
+.muted-cell {
+  color: var(--fg-muted);
+}
+.delta-up {
+  color: var(--success);
+}
+.delta-down {
+  color: var(--danger);
 }
 </style>

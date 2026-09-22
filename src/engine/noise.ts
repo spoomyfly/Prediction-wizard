@@ -16,10 +16,13 @@ export function applyRatingNoise(
   defaults: ModelDefaults,
   rng: RandomFn,
 ): Team[] {
-  const sigma = defaults.sigma ?? 0
-  if (sigma <= 0) return teams
+  const baseSigma = defaults.sigma ?? 0
+  if (baseSigma <= 0) return teams
 
   return teams.map((team) => {
+    // A team can widen its own uncertainty (e.g. right after a coach change,
+    // see elo.ts) without touching the tournament-wide sigma.
+    const sigma = baseSigma * (team.sigmaMultiplier ?? 1)
     const noisy: Team = { ...team }
     if (team.attack !== undefined) {
       noisy.attack = Math.max(0.05, team.attack * (1 + randomNormal(rng, 0, sigma)))

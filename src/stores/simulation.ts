@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { markRaw, reactive } from 'vue'
 import type { ModelDefaults, SimulationMessage, SimulationResult } from '../engine/types'
 import type { TeamAdjustment } from '../engine/strength'
+import type { EloParams } from '../engine/elo'
 import type { CompetitionData } from '../data/loadCompetitionData'
 import { loadCompetitionData } from '../data/loadCompetitionData'
 import { getCompetition } from '../competitions'
@@ -10,15 +11,20 @@ import { getCompetition } from '../competitions'
 export type ModelOverrideKey = 'avgGoals' | 'homeAdv' | 'sigma' | 'rho'
 export type ModelOverrides = Partial<Pick<ModelDefaults, ModelOverrideKey>>
 
+/** Elo-model knobs exposed as sliders; anything unset falls back to defaultEloParams. */
+export type EloOverrideKey = 'kBase' | 'homeAdvantageElo' | 'formWeight' | 'coachKBoost'
+export type EloOverrides = Partial<Pick<EloParams, EloOverrideKey>>
+
 export interface StrengthUiState {
   /** 0 = every team collapses to equal strength, 1 = default calibration. */
   ratingInfluence: number
   modelOverrides: ModelOverrides
+  eloOverrides: EloOverrides
   teamAdjustments: Record<string, TeamAdjustment>
 }
 
 function defaultStrengthState(): StrengthUiState {
-  return { ratingInfluence: 1, modelOverrides: {}, teamAdjustments: {} }
+  return { ratingInfluence: 1, modelOverrides: {}, eloOverrides: {}, teamAdjustments: {} }
 }
 
 function strengthStorageKey(competitionId: string): string {
@@ -91,10 +97,17 @@ export const useSimulationStore = defineStore('simulation', () => {
     saveStrengthState(competitionId, strength)
   }
 
+  function setEloOverride(competitionId: string, key: EloOverrideKey, value: number | undefined): void {
+    const strength = strengthFor(competitionId)
+    if (value === undefined) delete strength.eloOverrides[key]
+    else strength.eloOverrides[key] = value
+    saveStrengthState(competitionId, strength)
+  }
+
   function setTeamAdjustment(competitionId: string, teamId: string, patch: TeamAdjustment): void {
     const strength = strengthFor(competitionId)
     const merged: TeamAdjustment = { ...strength.teamAdjustments[teamId], ...patch }
-    if (merged.elo === undefined && !merged.adjustmentPct) {
+    if (merged.elo === undefined && !merged.adjustmentPct && merged.coachChangedBeforeMatchday === undefined) {
       delete strength.teamAdjustments[teamId]
     } else {
       strength.teamAdjustments[teamId] = merged
@@ -188,6 +201,7 @@ export const useSimulationStore = defineStore('simulation', () => {
         seed: `${competitionId}-${runs}-${Date.now()}`,
         strengthParams: { ratingInfluence: strength.ratingInfluence, overrides: strength.teamAdjustments },
         modelOverrides: strength.modelOverrides,
+        eloOverrides: strength.eloOverrides,
       })
     } catch (error) {
       state.status = 'error'
@@ -206,6 +220,7 @@ export const useSimulationStore = defineStore('simulation', () => {
     strengthFor,
     setRatingInfluence,
     setModelOverride,
+    setEloOverride,
     setTeamAdjustment,
     resetStrength,
   }

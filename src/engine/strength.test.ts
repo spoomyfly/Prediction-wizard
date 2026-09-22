@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { resolveTeamStrengths } from './strength'
-import type { Team } from './types'
+import { prepareTeamStrengths, resolveTeamStrengths } from './strength'
+import { defaultEloParams } from './elo'
+import type { Fixture, FootballResult, Team } from './types'
 
 function makeTeams(elos: number[]): Team[] {
   return elos.map((elo, i) => ({ id: `t${i}`, name: `Team ${i}`, elo }))
@@ -77,5 +78,72 @@ describe('resolveTeamStrengths', () => {
       expect(team.attack!).toBeGreaterThan(0)
       expect(team.defense!).toBeGreaterThan(0)
     }
+  })
+})
+
+function fixture(id: string, matchday: number, home: string, away: string): Fixture {
+  return { id, matchday, homeTeamId: home, awayTeamId: away }
+}
+
+describe('prepareTeamStrengths', () => {
+  it('treats a per-team Elo override as the BASELINE, not the final rating: results still replay on top', () => {
+    const teams = makeTeams([1700, 1700])
+    const fixtures = [fixture('f1', 1, 't0', 't1')]
+    const results: FootballResult[] = [{ fixtureId: 'f1', homeGoals: 3, awayGoals: 0 }]
+
+    const { teams: prepared, eloStates } = prepareTeamStrengths(
+      teams,
+      fixtures,
+      results,
+      defaultEloParams,
+      { ratingInfluence: 1, overrides: { t0: { elo: 2000 } } },
+    )
+
+    // Baseline is the override (2000), but currentElo has moved further after
+    // the win — it must not just equal the raw override.
+    expect(eloStates.get('t0')!.baseElo).toBe(2000)
+    expect(eloStates.get('t0')!.currentElo).toBeGreaterThan(2000)
+    expect(prepared.find((t) => t.id === 't0')!.elo).toBe(eloStates.get('t0')!.effectiveElo)
+  })
+
+  it('does not double-apply a manual adjustment through both the Elo baseline and resolveTeamStrengths', () => {
+    const teams = makeTeams([1700, 1700])
+    const fixtures: Fixture[] = []
+    const results: FootballResult[] = []
+
+    // adjustmentPct should only affect attack/defense (via resolveTeamStrengths),
+    // never get folded into the Elo baseline that replayElo/applyEloStates sees.
+    const { teams: prepared, eloStates } = prepareTeamStrengths(
+      teams,
+      fixtures,
+      results,
+      defaultEloParams,
+      { ratingInfluence: 1, overrides: { t0: { adjustmentPct: 0.2 } } },
+    )
+    expect(eloStates.get('t0')!.baseElo).toBe(1700)
+    const [boosted, plain] = prepared
+    expect(boosted.attack!).toBeGreaterThan(plain.attack!)
+  })
+
+  it('carries a coach-change override through to a per-team sigma multiplier on the output teams', () => {
+    const teams = makeTeams([1700, 1700])
+    const fixtures = [fixture('f1', 1, 't0', 't1')]
+    const results: FootballResult[] = [{ fixtureId: 'f1', homeGoals: 0, awayGoals: 2 }]
+
+    const { teams: prepared } = prepareTeamStrengths(teams, fixtures, results, defaultEloParams, {
+      ratingInfluence: 1,
+      overrides: { t0: { coachChangedBeforeMatchday: 1 } },
+    })
+    expect(prepared.find((t) => t.id === 't0')!.sigmaMultiplier).toBeGreaterThan(1)
+    expect(prepared.find((t) => t.id === 't1')!.sigmaMultiplier ?? 1).toBe(1)
+  })
+
+  it('with no params at all, still replays Elo (current rating differs from baseline after a result)', () => {
+    const teams = makeTeams([1700, 1700])
+    const fixtures = [fixture('f1', 1, 't0', 't1')]
+    const results: FootballResult[] = [{ fixtureId: 'f1', homeGoals: 2, awayGoals: 0 }]
+
+    const { eloStates } = prepareTeamStrengths(teams, fixtures, results, defaultEloParams, undefined)
+    expect(eloStates.get('t0')!.currentElo).toBeGreaterThan(1700)
   })
 })
