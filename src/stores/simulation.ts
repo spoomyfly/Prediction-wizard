@@ -1,9 +1,47 @@
 import { defineStore } from 'pinia'
 import { markRaw, reactive } from 'vue'
-import type { SimulationMessage, SimulationResult } from '../engine/types'
+import type { ModelDefaults, SimulationMessage, SimulationResult } from '../engine/types'
+import type { TeamAdjustment } from '../engine/strength'
 import type { CompetitionData } from '../data/loadCompetitionData'
 import { loadCompetitionData } from '../data/loadCompetitionData'
 import { getCompetition } from '../competitions'
+
+/** Only these ModelDefaults keys are exposed as global sliders on the "Сила команд" page. */
+export type ModelOverrideKey = 'avgGoals' | 'homeAdv' | 'sigma' | 'rho'
+export type ModelOverrides = Partial<Pick<ModelDefaults, ModelOverrideKey>>
+
+export interface StrengthUiState {
+  /** 0 = every team collapses to equal strength, 1 = default calibration. */
+  ratingInfluence: number
+  modelOverrides: ModelOverrides
+  teamAdjustments: Record<string, TeamAdjustment>
+}
+
+function defaultStrengthState(): StrengthUiState {
+  return { ratingInfluence: 1, modelOverrides: {}, teamAdjustments: {} }
+}
+
+function strengthStorageKey(competitionId: string): string {
+  return `tournament-sim:strength:${competitionId}`
+}
+
+function loadStrengthState(competitionId: string): StrengthUiState {
+  try {
+    const raw = localStorage.getItem(strengthStorageKey(competitionId))
+    if (raw) return { ...defaultStrengthState(), ...JSON.parse(raw) }
+  } catch {
+    // Corrupt/unavailable storage — fall back to defaults.
+  }
+  return defaultStrengthState()
+}
+
+function saveStrengthState(competitionId: string, state: StrengthUiState): void {
+  try {
+    localStorage.setItem(strengthStorageKey(competitionId), JSON.stringify(state))
+  } catch {
+    // Ignore write failures — params just won't persist across reloads.
+  }
+}
 
 export type SimulationStatus = 'idle' | 'loading-data' | 'running' | 'done' | 'error'
 
@@ -26,10 +64,51 @@ const workers = new Map<string, Worker>()
 
 export const useSimulationStore = defineStore('simulation', () => {
   const byCompetition = reactive<Record<string, CompetitionSimState>>({})
+  const strengthByCompetition = reactive<Record<string, StrengthUiState>>({})
 
   function stateFor(competitionId: string): CompetitionSimState {
     if (!byCompetition[competitionId]) byCompetition[competitionId] = freshState()
     return byCompetition[competitionId]
+  }
+
+  function strengthFor(competitionId: string): StrengthUiState {
+    if (!strengthByCompetition[competitionId]) {
+      strengthByCompetition[competitionId] = loadStrengthState(competitionId)
+    }
+    return strengthByCompetition[competitionId]
+  }
+
+  function setRatingInfluence(competitionId: string, value: number): void {
+    const strength = strengthFor(competitionId)
+    strength.ratingInfluence = value
+    saveStrengthState(competitionId, strength)
+  }
+
+  function setModelOverride(competitionId: string, key: ModelOverrideKey, value: number | undefined): void {
+    const strength = strengthFor(competitionId)
+    if (value === undefined) delete strength.modelOverrides[key]
+    else strength.modelOverrides[key] = value
+    saveStrengthState(competitionId, strength)
+  }
+
+  function setTeamAdjustment(competitionId: string, teamId: string, patch: TeamAdjustment): void {
+    const strength = strengthFor(competitionId)
+    const merged: TeamAdjustment = { ...strength.teamAdjustments[teamId], ...patch }
+    if (merged.elo === undefined && !merged.adjustmentPct) {
+      delete strength.teamAdjustments[teamId]
+    } else {
+      strength.teamAdjustments[teamId] = merged
+    }
+    saveStrengthState(competitionId, strength)
+  }
+
+  function resetStrength(competitionId: string): void {
+    strengthByCompetition[competitionId] = defaultStrengthState()
+    try {
+      localStorage.removeItem(strengthStorageKey(competitionId))
+    } catch {
+      // Ignore — worst case the stale key lingers until next write.
+    }
   }
 
   async function ensureData(competitionId: string): Promise<CompetitionData> {
@@ -90,6 +169,10 @@ export const useSimulationStore = defineStore('simulation', () => {
       workers.delete(competitionId)
     }
 
+    // JSON round-trip: strength is part of a reactive() store object, and
+    // nested reactive Proxies can't be structured-cloned by postMessage
+    // (see the markRaw comment above — same failure mode, different data).
+    const strength: StrengthUiState = JSON.parse(JSON.stringify(strengthFor(competitionId)))
     try {
       worker.postMessage({
         config,
@@ -98,6 +181,8 @@ export const useSimulationStore = defineStore('simulation', () => {
         results: data.results,
         runs,
         seed: `${competitionId}-${runs}`,
+        strengthParams: { ratingInfluence: strength.ratingInfluence, overrides: strength.teamAdjustments },
+        modelOverrides: strength.modelOverrides,
       })
     } catch (error) {
       state.status = 'error'
@@ -107,5 +192,16 @@ export const useSimulationStore = defineStore('simulation', () => {
     }
   }
 
-  return { byCompetition, stateFor, ensureData, runSimulation }
+  return {
+    byCompetition,
+    stateFor,
+    ensureData,
+    runSimulation,
+    strengthByCompetition,
+    strengthFor,
+    setRatingInfluence,
+    setModelOverride,
+    setTeamAdjustment,
+    resetStrength,
+  }
 })

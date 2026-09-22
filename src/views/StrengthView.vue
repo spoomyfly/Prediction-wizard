@@ -1,14 +1,16 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue'
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { getCompetition } from '../competitions'
-import { useSimulationStore } from '../stores/simulation'
+import { useSimulationStore, type ModelOverrideKey } from '../stores/simulation'
+import { resolveTeamStrengths } from '../engine/strength'
 
 const props = defineProps<{ competitionId: string }>()
 
 const config = computed(() => getCompetition(props.competitionId))
 const store = useSimulationStore()
 const state = computed(() => store.stateFor(props.competitionId))
+const strength = computed(() => store.strengthFor(props.competitionId))
 
 onMounted(() => {
   store.ensureData(props.competitionId).catch(() => {
@@ -16,12 +18,114 @@ onMounted(() => {
   })
 })
 
-const sortedTeams = computed(() => {
+const isFootball = computed(() => config.value?.sport === 'football')
+
+// Live preview: resolveTeamStrengths is a pure, cheap function (no Monte
+// Carlo), so attack/defense in the table below update on every keystroke
+// without waiting for a simulation run.
+const previewTeams = computed(() => {
   const teams = state.value.data?.teams ?? []
-  return [...teams].sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0))
+  if (!isFootball.value) return teams
+  return resolveTeamStrengths(teams, {
+    ratingInfluence: strength.value.ratingInfluence,
+    overrides: strength.value.teamAdjustments,
+  })
 })
 
-const isFootball = computed(() => config.value?.sport === 'football')
+const sortedTeams = computed(() =>
+  [...previewTeams.value].sort((a, b) => (b.elo ?? 0) - (a.elo ?? 0)),
+)
+
+// Debounced auto-recalculation of the full Monte Carlo result whenever a
+// param changes: a cheap 1k-run preview while actively adjusting, and a
+// proper 10k run once the user stops (mirrors native <input>/<change> —
+// fires on every keystroke/drag vs. once on release/blur).
+let previewTimer: ReturnType<typeof setTimeout> | undefined
+
+function runPreview() {
+  clearTimeout(previewTimer)
+  previewTimer = setTimeout(() => {
+    store.runSimulation(props.competitionId, 1000).catch(() => {})
+  }, 250)
+}
+
+function runFinal() {
+  clearTimeout(previewTimer)
+  store.runSimulation(props.competitionId, 10000).catch(() => {})
+}
+
+onBeforeUnmount(() => clearTimeout(previewTimer))
+
+const globalDefaults = computed(() => {
+  const defaults = config.value?.modelDefaults ?? {}
+  return {
+    avgGoals: defaults.avgGoals ?? 1.35,
+    homeAdv: defaults.homeAdv ?? 1.15,
+    sigma: defaults.sigma ?? 0.12,
+    rho: defaults.rho ?? 0,
+  }
+})
+
+// v-model-friendly getters/setters backed by the store, falling back to the
+// competition's own config defaults when no override is set yet.
+function globalValue(key: ModelOverrideKey): number {
+  return strength.value.modelOverrides[key] ?? globalDefaults.value[key]
+}
+function setGlobal(key: ModelOverrideKey, value: number) {
+  store.setModelOverride(props.competitionId, key, value)
+}
+
+const rhoEnabled = computed(() => globalValue('rho') !== 0)
+function toggleRho(enabled: boolean) {
+  setGlobal('rho', enabled ? 0.1 : 0)
+  runPreview()
+}
+
+function onRatingInfluenceInput(value: number) {
+  store.setRatingInfluence(props.competitionId, value)
+  runPreview()
+}
+
+function onGlobalInput(key: ModelOverrideKey, value: number) {
+  setGlobal(key, value)
+  runPreview()
+}
+
+function teamElo(teamId: string): number | undefined {
+  const override = strength.value.teamAdjustments[teamId]?.elo
+  if (override !== undefined) return override
+  return state.value.data?.teams.find((t) => t.id === teamId)?.elo
+}
+function teamAdjustmentPct(teamId: string): number {
+  return (strength.value.teamAdjustments[teamId]?.adjustmentPct ?? 0) * 100
+}
+
+function onTeamEloInput(teamId: string, value: string) {
+  const num = Number(value)
+  store.setTeamAdjustment(props.competitionId, teamId, { elo: Number.isFinite(num) ? num : undefined })
+  runPreview()
+}
+function onTeamAdjustmentInput(teamId: string, value: string) {
+  const num = Number(value)
+  store.setTeamAdjustment(props.competitionId, teamId, {
+    adjustmentPct: Number.isFinite(num) ? num / 100 : 0,
+  })
+  runPreview()
+}
+
+function resetAll() {
+  store.resetStrength(props.competitionId)
+  runFinal()
+}
+
+const hasOverrides = computed(() => {
+  const s = strength.value
+  return (
+    s.ratingInfluence !== 1 ||
+    Object.keys(s.modelOverrides).length > 0 ||
+    Object.keys(s.teamAdjustments).length > 0
+  )
+})
 </script>
 
 <template>
@@ -32,10 +136,18 @@ const isFootball = computed(() => config.value?.sport === 'football')
 
   <section v-else class="strength-page">
     <p class="breadcrumb"><RouterLink :to="`/${config.id}`">&larr; {{ config.name }}</RouterLink></p>
-    <h1>Сила команд — {{ config.name }}</h1>
+    <div class="title-row">
+      <h1>Сила команд — {{ config.name }}</h1>
+      <button v-if="isFootball" class="btn" type="button" :disabled="!hasOverrides" @click="resetAll">
+        Сбросить
+      </button>
+    </div>
     <p class="muted">
-      Текущие рейтинги, только для чтения. Источник и дата обновления указаны ниже; настройка
-      параметров модели силы пока недоступна (см. блок «Планируемые параметры»).
+      <template v-if="isFootball">
+        Настройте параметры модели ниже — таблица и (с задержкой) вероятности на странице турнира
+        пересчитываются автоматически.
+      </template>
+      <template v-else>Текущие рейтинги, только для чтения.</template>
     </p>
 
     <p v-if="state.status === 'loading-data'" class="muted">Загрузка рейтингов…</p>
@@ -47,6 +159,93 @@ const isFootball = computed(() => config.value?.sport === 'football')
         <span v-if="state.data.ratingsNote"> — {{ state.data.ratingsNote }}</span>
       </p>
 
+      <div v-if="isFootball" class="card global-params">
+        <h2>Глобальные параметры</h2>
+        <div class="params-grid">
+          <label>
+            <span class="label-row">
+              <span>Влияние рейтинга</span>
+              <span class="value-badge">{{ strength.ratingInfluence.toFixed(2) }}</span>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="2"
+              step="0.05"
+              :value="strength.ratingInfluence"
+              @input="onRatingInfluenceInput(+($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label>
+            <span class="label-row">
+              <span>Домашнее преимущество (λ×)</span>
+              <span class="value-badge">{{ globalValue('homeAdv').toFixed(2) }}</span>
+            </span>
+            <input
+              type="range"
+              min="1"
+              max="1.3"
+              step="0.01"
+              :value="globalValue('homeAdv')"
+              @input="onGlobalInput('homeAdv', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label>
+            Средняя результативность
+            <input
+              type="number"
+              min="1"
+              max="2.5"
+              step="0.05"
+              :value="globalValue('avgGoals')"
+              @input="onGlobalInput('avgGoals', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label>
+            <span class="label-row">
+              <span>Шум рейтинга σ</span>
+              <span class="value-badge">{{ globalValue('sigma').toFixed(2) }}</span>
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="0.3"
+              step="0.01"
+              :value="globalValue('sigma')"
+              @input="onGlobalInput('sigma', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label class="checkbox-row">
+            <span>
+              <input
+                type="checkbox"
+                :checked="rhoEnabled"
+                @change="toggleRho(($event.target as HTMLInputElement).checked); runFinal()"
+              />
+              Поправка на ничьи (ρ Диксона–Коулза)
+            </span>
+            <input
+              v-if="rhoEnabled"
+              type="range"
+              min="-0.2"
+              max="0.2"
+              step="0.01"
+              :value="globalValue('rho')"
+              @input="onGlobalInput('rho', +($event.target as HTMLInputElement).value)"
+              @change="runFinal"
+            />
+          </label>
+          <label class="disabled-field" title="Нужна история результатов по турам — не собирается в этой сборке">
+            Затухание формы <span class="soon-badge">скоро</span>
+            <input type="range" min="0" max="1" step="0.05" value="0" disabled />
+          </label>
+        </div>
+      </div>
+
       <div class="card table-scroll">
         <table>
           <thead>
@@ -54,7 +253,8 @@ const isFootball = computed(() => config.value?.sport === 'football')
               <th>#</th>
               <th>Команда</th>
               <th v-if="state.data.teams[0]?.country">Страна</th>
-              <th>Рейтинг Эло</th>
+              <th>Эло</th>
+              <th v-if="isFootball">Коррект. ±%</th>
               <th v-if="isFootball">Атака</th>
               <th v-if="isFootball">Оборона</th>
               <th v-if="isFootball">Коэфф. УЕФА</th>
@@ -65,7 +265,29 @@ const isFootball = computed(() => config.value?.sport === 'football')
               <td>{{ index + 1 }}</td>
               <td>{{ team.name }}</td>
               <td v-if="team.country">{{ team.country }}</td>
-              <td>{{ team.elo?.toFixed(0) ?? '—' }}</td>
+              <td>
+                <input
+                  v-if="isFootball"
+                  class="cell-input"
+                  type="number"
+                  :value="teamElo(team.id)"
+                  @input="onTeamEloInput(team.id, ($event.target as HTMLInputElement).value)"
+                  @change="runFinal"
+                />
+                <span v-else>{{ team.elo?.toFixed(0) ?? '—' }}</span>
+              </td>
+              <td v-if="isFootball">
+                <input
+                  class="cell-input"
+                  type="number"
+                  min="-30"
+                  max="30"
+                  step="1"
+                  :value="teamAdjustmentPct(team.id)"
+                  @input="onTeamAdjustmentInput(team.id, ($event.target as HTMLInputElement).value)"
+                  @change="runFinal"
+                />
+              </td>
               <td v-if="isFootball">{{ team.attack?.toFixed(2) ?? '—' }}</td>
               <td v-if="isFootball">{{ team.defense?.toFixed(2) ?? '—' }}</td>
               <td v-if="isFootball">{{ team.clubCoefficient?.toFixed(1) ?? '—' }}</td>
@@ -73,63 +295,31 @@ const isFootball = computed(() => config.value?.sport === 'football')
           </tbody>
         </table>
       </div>
+
+      <p v-if="isFootball" class="muted hint">
+        <RouterLink :to="`/${config.id}`">Таблица турнира</RouterLink> обновится автоматически
+        (1k сразу, 10k чуть позже) — статус пересчёта виден там же.
+      </p>
     </template>
 
-    <div class="card planned-params">
+    <div v-if="!isFootball" class="card planned-params">
       <h2>Планируемые параметры <span class="soon-badge">скоро</span></h2>
       <p class="muted">
-        Ниже — предложения по настройке модели силы команд. Логика ещё не реализована; элементы
-        управления отключены. Полное описание — в <code>docs/strength-params.md</code>.
+        Настройка силы команд для Dota 2 пока не реализована. Полное описание — в
+        <code>docs/strength-params.md</code>.
       </p>
-
-      <template v-if="isFootball">
-        <h3>Глобальные (футбол)</h3>
-        <fieldset disabled class="params-grid">
-          <label>Источник рейтинга
-            <select><option>Смешанный (ClubElo + коэффициенты)</option></select>
-          </label>
-          <label>Домашнее преимущество (λ×)
-            <input type="range" min="1.0" max="1.3" step="0.01" value="1.15" />
-          </label>
-          <label>Средняя результативность
-            <input type="number" value="1.4" step="0.05" />
-          </label>
-          <label>Шум рейтинга σ
-            <input type="range" min="0" max="0.3" step="0.01" value="0.12" />
-          </label>
-          <label>Поправка на ничьи (ρ Диксона–Коулза)
-            <input type="checkbox" />
-          </label>
-          <label>Затухание формы
-            <input type="range" min="0" max="1" step="0.05" value="0.3" />
-          </label>
-        </fieldset>
-
-        <h3>Для отдельной команды</h3>
-        <fieldset disabled class="params-grid">
-          <label>Ручная корректировка силы
-            <input type="number" value="0" placeholder="±%" />
-          </label>
-          <label>Ротация в последнем туре
-            <input type="checkbox" />
-          </label>
-        </fieldset>
-      </template>
-
-      <template v-else>
-        <h3>Киберспорт (Dota 2)</h3>
-        <fieldset disabled class="params-grid">
-          <label>Вес LAN vs. онлайн
-            <input type="range" min="0" max="1" step="0.05" value="0.7" />
-          </label>
-          <label>Сброс рейтинга при смене ростера
-            <input type="checkbox" checked />
-          </label>
-          <label>Увеличенный σ после патча
-            <input type="checkbox" />
-          </label>
-        </fieldset>
-      </template>
+      <h3>Киберспорт (Dota 2)</h3>
+      <fieldset disabled class="params-grid">
+        <label>Вес LAN vs. онлайн
+          <input type="range" min="0" max="1" step="0.05" value="0.7" />
+        </label>
+        <label>Сброс рейтинга при смене ростера
+          <input type="checkbox" checked />
+        </label>
+        <label>Увеличенный σ после патча
+          <input type="checkbox" />
+        </label>
+      </fieldset>
     </div>
   </section>
 </template>
@@ -138,6 +328,13 @@ const isFootball = computed(() => config.value?.sport === 'football')
 .breadcrumb {
   margin: 0 0 8px;
   font-size: 0.9rem;
+}
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 h1 {
   margin: 0 0 6px;
@@ -149,12 +346,18 @@ h1 {
 .error {
   color: var(--danger);
 }
+.hint {
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.global-params,
 .planned-params {
-  margin-top: 24px;
+  margin-bottom: 16px;
   padding: 16px 18px;
 }
+.global-params h2,
 .planned-params h2 {
-  margin: 0 0 4px;
+  margin: 0 0 12px;
   font-size: 1.05rem;
   display: flex;
   align-items: center;
@@ -181,7 +384,7 @@ h1 {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 12px 20px;
+  gap: 14px 20px;
 }
 .params-grid label {
   display: flex;
@@ -190,11 +393,41 @@ h1 {
   font-size: 0.85rem;
   color: var(--fg-muted);
 }
+.label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.value-badge {
+  font-variant-numeric: tabular-nums;
+  color: var(--fg);
+  white-space: nowrap;
+}
+.checkbox-row span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.checkbox-row input[type='checkbox'] {
+  width: auto;
+}
+.disabled-field {
+  opacity: 0.6;
+}
 .params-grid input,
 .params-grid select {
   padding: 6px 8px;
   border: 1px solid var(--border);
   border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.cell-input {
+  width: 64px;
+  padding: 3px 5px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
   background: var(--bg);
   color: var(--fg);
 }
