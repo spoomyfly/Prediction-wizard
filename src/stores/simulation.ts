@@ -180,7 +180,12 @@ export const useSimulationStore = defineStore('simulation', () => {
         fixtures: data.fixtures,
         results: data.results,
         runs,
-        seed: `${competitionId}-${runs}`,
+        // A fresh seed per run (not just per competition+runs) so clicking
+        // "Пересчитать" again — with nothing else changed — actually draws a
+        // new Monte Carlo sample instead of reproducing the exact same
+        // numbers. Reproducibility by explicit seed is still available to
+        // anyone calling simulate()/the engine directly (see engine tests).
+        seed: `${competitionId}-${runs}-${Date.now()}`,
         strengthParams: { ratingInfluence: strength.ratingInfluence, overrides: strength.teamAdjustments },
         modelOverrides: strength.modelOverrides,
       })
