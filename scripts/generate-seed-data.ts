@@ -13,8 +13,9 @@ import path from 'node:path'
 import { mulberry32, hashSeed } from '../src/engine/rng'
 import { sampleFootballScore } from '../src/engine/models/poisson'
 import { sampleSeries } from '../src/engine/models/series'
-import { buildLeaguePhaseFixtures, generateRoundRobinRounds } from '../src/engine/fixtureGenerator'
+import { buildLeaguePhaseFixtures } from '../src/engine/fixtureGenerator'
 import { resolveTeamStrengths } from '../src/engine/strength'
+import { uclSchedule } from './data/ucl-2026-27-schedule'
 import type { Fixture, FootballResult, Team } from '../src/engine/types'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -202,13 +203,13 @@ function generateFootballCompetition(opts: {
 }
 
 /**
- * UCL 2026/27: matchday 1 uses the real draw and real results (see
- * uclRealTeams/uclMatchday1 above). Matchdays 2-8 are synthetic — UEFA's
- * actual Swiss-pairing algorithm for the remaining rounds isn't something
- * this generator can source — built the same way as the other competitions,
- * but skipping any generated pairing that would duplicate a real matchday-1
- * fixture (round-robin guarantees every pair appears exactly once, so this
- * just filters out whichever of the 35 possible rounds happens to collide).
+ * UCL 2026/27: the full 8-matchday league-phase schedule is the real UEFA
+ * draw (uclSchedule — gathered via web search, structurally validated: 144
+ * fixtures, every team plays 8 distinct opponents with a 4-home/4-away
+ * split, no repeated pairing). Matchday 1's results are also real
+ * (uclMatchday1, cross-checked against an independently reported
+ * post-matchday-1 standings summary). Matchdays 2-8 have no results yet —
+ * those games haven't been played.
  */
 function generateUcl() {
   const id = 'ucl-2026-27'
@@ -217,45 +218,20 @@ function generateUcl() {
   const teams = buildTeams(uclRealTeams, idPrefix, rng)
   const idFor = (name: string) => `${idPrefix}-${slugify(name)}`
 
-  const md1Fixtures: Fixture[] = uclMatchday1.map(([home, away], i) => ({
-    id: `${idPrefix}-md1-${i}`,
-    matchday: 1,
+  let counter = 0
+  const fixtures: Fixture[] = uclSchedule.map(([matchday, home, away]) => ({
+    id: `${idPrefix}-md${matchday}-${counter++}`,
+    matchday,
     homeTeamId: idFor(home),
     awayTeamId: idFor(away),
   }))
+
+  const md1FixtureIds = fixtures.filter((f) => f.matchday === 1).map((f) => f.id)
   const md1Results: FootballResult[] = uclMatchday1.map(([, , homeGoals, awayGoals], i) => ({
-    fixtureId: `${idPrefix}-md1-${i}`,
+    fixtureId: md1FixtureIds[i],
     homeGoals,
     awayGoals,
   }))
-
-  const pairKey = (a: string, b: string) => [a, b].sort().join('|')
-  const playedPairs = new Set(md1Fixtures.map((f) => pairKey(f.homeTeamId, f.awayTeamId)))
-
-  const allRounds = generateRoundRobinRounds(teams.map((t) => t.id))
-  const cleanRounds: [string, string][][] = []
-  for (const round of allRounds) {
-    if (round.every(([a, b]) => !playedPairs.has(pairKey(a, b)))) cleanRounds.push(round)
-    if (cleanRounds.length === 7) break
-  }
-  if (cleanRounds.length < 7) {
-    throw new Error(`generateUcl: only found ${cleanRounds.length}/7 collision-free synthetic rounds`)
-  }
-
-  let counter = 0
-  const syntheticFixtures: Fixture[] = []
-  cleanRounds.forEach((pairs, idx) => {
-    pairs.forEach(([home, away]) => {
-      syntheticFixtures.push({
-        id: `${idPrefix}-md${idx + 2}-${counter++}`,
-        matchday: idx + 2,
-        homeTeamId: home,
-        awayTeamId: away,
-      })
-    })
-  })
-
-  const fixtures = [...md1Fixtures, ...syntheticFixtures]
 
   const dir = path.join(dataRoot, id)
   writeJson(
@@ -273,8 +249,8 @@ function generateUcl() {
     asOf: '2026-09-21',
     source: 'mixed',
     note:
-      'Состав участников и результаты 1-го тура — реальные (сверено по открытым источникам на 21.09.2026). ' +
-      'Сила команд (Эло/атака/оборона) и расписание туров 2-8 — иллюстративная оценка/заглушка, не живой фид ' +
+      'Состав участников, календарь всех 8 туров и результаты 1-го тура — реальные (сверено по открытым ' +
+      'источникам на 21.09.2026). Сила команд (Эло/атака/оборона) — иллюстративная оценка, не живой фид ' +
       'ClubElo/The Odds API — см. docs/strength-params.md.',
     teams: teams.map(({ id, elo, attack, defense }) => ({ id, elo, attack, defense })),
   })
@@ -282,7 +258,7 @@ function generateUcl() {
   writeJson(dir, 'results.json', md1Results)
 
   console.log(
-    `${id}: ${teams.length} teams (real roster), ${fixtures.length} fixtures, ${md1Results.length} played (real matchday 1)`,
+    `${id}: ${teams.length} teams (real roster), ${fixtures.length} fixtures (real full schedule), ${md1Results.length} played (real matchday 1)`,
   )
 }
 
