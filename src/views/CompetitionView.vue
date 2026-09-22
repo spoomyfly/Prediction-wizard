@@ -102,6 +102,7 @@ const orderedTeamIds = computed(() => {
               <th>Команда</th>
               <th>Очки</th>
               <th v-for="zone in config.zones" :key="zone.id">{{ zone.label }}</th>
+              <th>Ожид. очки</th>
               <th>Ожид. место</th>
             </tr>
           </thead>
@@ -114,6 +115,10 @@ const orderedTeamIds = computed(() => {
                 <span v-if="resultByTeam.get(teamId)">
                   {{ ((resultByTeam.get(teamId)!.zoneProbabilities[zone.id] ?? 0) * 100).toFixed(0) }}%
                 </span>
+                <span v-else class="muted">—</span>
+              </td>
+              <td>
+                <span v-if="resultByTeam.get(teamId)">{{ resultByTeam.get(teamId)!.expectedPoints.toFixed(1) }}</span>
                 <span v-else class="muted">—</span>
               </td>
               <td>
