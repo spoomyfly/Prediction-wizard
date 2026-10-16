@@ -149,6 +149,12 @@ export function simulateLeaguePhaseOnce(
   config: CompetitionConfig,
   rng: RandomFn,
   context: LeaguePhaseContext,
+  /**
+   * Optional out-parameter, filled with this run's result for every fixture
+   * in fixture order (played ones included). Lets a caller tally per-match
+   * odds without re-sampling, and costs nothing when omitted.
+   */
+  sampledOut?: FootballResult[],
 ): StandingsRow[] {
   const noisyTeams = applyRatingNoise(teams, config.modelDefaults, rng)
   const teamById = new Map(noisyTeams.map((t) => [t.id, t]))
@@ -165,6 +171,10 @@ export function simulateLeaguePhaseOnce(
     const away = teamById.get(fixture.awayTeamId)!
     const { homeGoals, awayGoals } = sampleFootballScore(rng, home, away, config.modelDefaults)
     allResults[i] = { fixtureId: fixture.id, homeGoals, awayGoals }
+  }
+
+  if (sampledOut) {
+    for (let i = 0; i < allResults.length; i++) sampledOut[i] = allResults[i]
   }
 
   const standings = tallyStandingsOrdered(teams, fixtures, allResults)

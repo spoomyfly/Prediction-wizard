@@ -202,6 +202,7 @@ export const useSimulationStore = defineStore('simulation', () => {
         strengthParams: { ratingInfluence: strength.ratingInfluence, overrides: strength.teamAdjustments },
         modelOverrides: strength.modelOverrides,
         eloOverrides: strength.eloOverrides,
+        collectMatchStats: true,
       })
     } catch (error) {
       state.status = 'error'

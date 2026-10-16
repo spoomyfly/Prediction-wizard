@@ -9,6 +9,7 @@ import type {
 } from './types'
 import { hashSeed, mulberry32 } from './rng'
 import { isFootballResults, prepareLeaguePhase, simulateLeaguePhaseOnce } from './formats/leaguePhase'
+import { MatchStatsCollector } from './matchPredictions'
 
 export interface SimulateOptions {
   /** Numeric seed, or a string that gets hashed into one, for reproducible runs. */
@@ -17,6 +18,12 @@ export interface SimulateOptions {
   onProgress?: (completed: number, total: number) => void
   /** How many completed runs between progress callbacks. Default: every 1% (min 100). */
   progressEvery?: number
+  /**
+   * Also tally per-fixture odds (win/draw/loss, expected goals, most likely
+   * scorelines) for every fixture that has not been played yet, and return
+   * them as `matches`. Off by default.
+   */
+  collectMatchStats?: boolean
 }
 
 /**
@@ -63,8 +70,17 @@ export function simulate(
   const footballResults: FootballResult[] = results
   const context = prepareLeaguePhase(fixtures, footballResults, config)
 
+  const collector = options.collectMatchStats
+    ? new MatchStatsCollector(fixtures, new Set(context.playedByFixture.keys()))
+    : undefined
+  // Reused across runs; simulateLeaguePhaseOnce overwrites every slot.
+  const sampled: FootballResult[] | undefined = collector
+    ? new Array(fixtures.length)
+    : undefined
+
   for (let run = 0; run < n; run++) {
-    const standings = simulateLeaguePhaseOnce(teams, fixtures, config, rng, context)
+    const standings = simulateLeaguePhaseOnce(teams, fixtures, config, rng, context, sampled)
+    if (collector && sampled) collector.record(sampled)
     for (let position = 0; position < standings.length; position++) {
       const row = standings[position]
       positionCounts.get(row.teamId)![position]++
@@ -104,5 +120,6 @@ export function simulate(
     seed: numericSeed,
     durationMs: performance.now() - startedAt,
     teams: teamResults,
+    matches: collector?.finish(),
   }
 }

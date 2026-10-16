@@ -134,12 +134,35 @@ export interface TeamSimulationResult {
   expectedPosition: number
 }
 
+export interface ScorelineProbability {
+  homeGoals: number
+  awayGoals: number
+  probability: number
+}
+
+/** Per-fixture odds for a match that has not been played yet. */
+export interface MatchPrediction {
+  fixtureId: string
+  matchday: number
+  homeTeamId: string
+  awayTeamId: string
+  homeWin: number
+  draw: number
+  awayWin: number
+  expectedHomeGoals: number
+  expectedAwayGoals: number
+  /** Most likely scorelines, most likely first. */
+  topScorelines: ScorelineProbability[]
+}
+
 export interface SimulationResult {
   competitionId: string
   runs: number
   seed: number
   durationMs: number
   teams: TeamSimulationResult[]
+  /** Present when the run was asked to collect per-match odds. Unplayed fixtures only. */
+  matches?: MatchPrediction[]
 }
 
 export interface SimulationProgress {

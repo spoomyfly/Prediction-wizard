@@ -8,6 +8,7 @@ import { simulate } from '../src/engine/simulate'
 import { prepareTeamStrengths } from '../src/engine/strength'
 import { defaultEloParams } from '../src/engine/elo'
 import { uclConfig } from '../src/competitions/ucl-2026-27/config'
+import { nextMatchday } from '../src/engine/matchPredictions'
 import type { Fixture, FootballResult, Team } from '../src/engine/types'
 
 const dir = 'public/data/ucl-2026-27'
@@ -31,7 +32,10 @@ const { teams: prepared, eloStates } = prepareTeamStrengths(
 
 const runs = 50_000
 const started = Date.now()
-const sim = simulate(uclConfig, prepared, fixtures, results, runs, { seed: 'smoke' })
+const sim = simulate(uclConfig, prepared, fixtures, results, runs, {
+  seed: 'smoke',
+  collectMatchStats: true,
+})
 const elapsed = Date.now() - started
 
 const name = new Map(teams.map((t) => [t.id, t.name]))
@@ -66,4 +70,28 @@ for (const r of rows) {
       r.pos.toFixed(1).padStart(6) +
       zoneKeys.map((k) => (r.zones[k] * 100).toFixed(1).padStart(8) + '%').join(''),
   )
+}
+
+// --- next matchday ----------------------------------------------------
+const played = new Set(results.map((r) => r.fixtureId))
+const upcoming = nextMatchday(fixtures, played)
+const round = (sim.matches ?? []).filter((m) => m.matchday === upcoming)
+
+console.log()
+console.log(`next matchday: ${upcoming} (${round.length} games)`)
+console.log(
+  `odds sum to 1 everywhere: ${(sim.matches ?? []).every(
+    (m) => Math.abs(m.homeWin + m.draw + m.awayWin - 1) < 1e-9,
+  )}`,
+)
+console.log(`predictions returned for all unplayed fixtures: ${(sim.matches ?? []).length === fixtures.length - results.length}`)
+console.log()
+for (const m of round) {
+  const line = `${name.get(m.homeTeamId)} - ${name.get(m.awayTeamId)}`
+  const odds = `${(m.homeWin * 100).toFixed(0)}/${(m.draw * 100).toFixed(0)}/${(m.awayWin * 100).toFixed(0)}`
+  const xg = `${m.expectedHomeGoals.toFixed(2)}:${m.expectedAwayGoals.toFixed(2)}`
+  const top = m.topScorelines
+    .map((s) => `${s.homeGoals}:${s.awayGoals} ${(s.probability * 100).toFixed(1)}%`)
+    .join('  ')
+  console.log(`${line.padEnd(42)}${odds.padStart(10)}  xG ${xg.padStart(9)}   ${top}`)
 }

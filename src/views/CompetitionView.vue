@@ -6,8 +6,10 @@ import { useSimulationStore } from '../stores/simulation'
 import { computeStandings } from '../engine/formats/leaguePhase'
 import { buildOpponentsByTeam, sortStandings } from '../engine/tiebreakers'
 import type { FootballResult } from '../engine/types'
+import { nextMatchday } from '../engine/matchPredictions'
 import RunControls from '../components/RunControls.vue'
 import PositionHeatmap from '../components/PositionHeatmap.vue'
+import MatchdayPredictions from '../components/MatchdayPredictions.vue'
 
 const props = defineProps<{ competitionId: string }>()
 
@@ -50,6 +52,12 @@ const resultByTeam = computed(() => {
   const result = state.value.result
   if (!result) return new Map()
   return new Map(result.teams.map((t) => [t.teamId, t]))
+})
+
+const upcomingMatchday = computed(() => {
+  const data = state.value.data
+  if (!data) return undefined
+  return nextMatchday(data.fixtures, new Set(data.results.map((r) => r.fixtureId)))
 })
 
 // Simulation results ordered by expected position, so the table matches
@@ -134,6 +142,14 @@ const orderedTeamIds = computed(() => {
         Таблица выше показывает текущие очки. Нажмите «Пересчитать», чтобы получить вероятности
         зон и ожидаемое место.
       </p>
+
+      <MatchdayPredictions
+        v-if="state.result?.matches?.length"
+        :matches="state.result.matches"
+        :team-name-by-id="teamNameById"
+        :runs="state.result.runs"
+        :default-matchday="upcomingMatchday"
+      />
 
       <PositionHeatmap
         v-if="state.result"

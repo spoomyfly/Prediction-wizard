@@ -28,11 +28,15 @@ export interface SimulateRequest {
   modelOverrides?: Partial<ModelDefaults>
   /** "Сила команд" panel overrides for the Elo rating model (K, home advantage in Elo points, form, coach boost). */
   eloOverrides?: Partial<EloParams>
+  /** Also tally per-match odds for the unplayed fixtures (next-matchday predictions). */
+  collectMatchStats?: boolean
 }
 
 self.onmessage = (event: MessageEvent<SimulateRequest>) => {
-  const { config, teams, fixtures, results, runs, seed, strengthParams, modelOverrides, eloOverrides } =
-    event.data
+  const {
+    config, teams, fixtures, results, runs, seed,
+    strengthParams, modelOverrides, eloOverrides, collectMatchStats,
+  } = event.data
 
   try {
     // Football competitions replay their played results through the Elo model
@@ -53,6 +57,7 @@ self.onmessage = (event: MessageEvent<SimulateRequest>) => {
 
     const result = simulate(effectiveConfig, effectiveTeams, fixtures, results, runs, {
       seed,
+      collectMatchStats,
       onProgress: (completed, total) => {
         const progress: SimulationMessage = { type: 'progress', completed, total }
         self.postMessage(progress)
